@@ -1,7 +1,7 @@
-// // sum of two number
+#include<bits/stdc++.h>
+using namespace std;
 
-// #include<bits/stdc++.h>
-// using namespace std;
+// // sum of two number
 
 // int sum(int num1, int num2){
 //     int num3=num1+num2;
@@ -25,9 +25,6 @@
 
 // // max finder
 
-// #include<bits/stdc++.h>
-// using namespace std;
-
 // int maxx(int num1, int num2){
 //     if(num1>=num2){
 //         return num1;
@@ -47,4 +44,21 @@
 
 
 
-// pass by refer
+// pass by reference
+
+void functionn(int arr[], int n){
+    arr[0]+=100;
+    cout<<"Value inside function: "<<arr[0]<<endl;
+}
+
+int main(){
+    int n=5;
+    int arr[n];
+    for(int i=0;i<n;i=i+1){
+        cin>>arr[i];
+    }
+    functionn(arr,n);
+
+    cout<<"Value inside int main: "<<arr[0]<<endl;
+    return 0;
+}
