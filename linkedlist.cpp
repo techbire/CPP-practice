@@ -1,7 +1,12 @@
+#include<iostream>
+using namespace std;
+
+
+
+
 //printing node
 
-// #include<iostream>
-// using namespace std;
+
 // class Node{
 // public:
 //     int val;
@@ -61,8 +66,6 @@
 //why pointer -traversing easy hoti hai above wali se!
 
 
-// #include<iostream>
-// using namespace std;
 // class Node{
 //     public:
 //     int val;
@@ -109,55 +112,97 @@
 
 //linkedlist class
 
-#include <bits/stdc++.h>
-using namespace std;
 
-class Node {
-public:
-    int val;
+
+// class Node {
+// public:
+//     int val;
+//     Node* next;
+//     Node(int val) {
+//         this->val = val;
+//         this->next = NULL;
+//     }
+// };
+
+// class LinkedList {
+// public: // Make the LinkedList constructor public
+//     Node* head;
+//     Node* tail;
+//     int size;
+
+//     LinkedList() { // Constructor is now public
+//         head = tail = NULL;
+//         size = 0;
+//     }
+
+//     void insertAtEnd(int val) {
+//         Node* temp = new Node(val);
+//         if (size == 0) {
+//             head = tail = temp;
+//         } else {
+//             tail->next = temp;
+//             tail = temp;
+//         }
+//         size++;
+//     }
+
+//     void display() {
+//         Node* temp = head;
+//         while (temp != NULL) {
+//             cout << temp->val << " ";
+//             temp = temp->next;
+//         }
+//         cout << endl;
+//     }
+// };
+
+// int main() {
+//     LinkedList ll;
+//     ll.insertAtEnd(10);
+//     ll.insertAtEnd(20);
+//     ll.display();
+//     return 0;
+// }
+
+
+
+
+//insertion the node at the beginning of linkedlist
+struct Node{
+    int data;
     Node* next;
-    Node(int val) {
-        this->val = val;
-        this->next = NULL;
+    Node(int new_data){
+        data=new_data;
+        next=nullptr;
     }
 };
 
-class LinkedList {
-public: // Make the LinkedList constructor public
-    Node* head;
-    Node* tail;
-    int size;
 
-    LinkedList() { // Constructor is now public
-        head = tail = NULL;
-        size = 0;
+Node* insertAtFront(Node* head, int new_data){
+    Node* new_node = new Node(new_data);
+    new_node->next=head;
+    return new_node;
+}
+
+void printList(Node* head){
+    Node* curr=head;
+    while(curr !=nullptr){
+        cout<<" "<<curr->data;
+        curr=curr->next;
     }
+    cout<<endl;
 
-    void insertAtEnd(int val) {
-        Node* temp = new Node(val);
-        if (size == 0) {
-            head = tail = temp;
-        } else {
-            tail->next = temp;
-            tail = temp;
-        }
-        size++;
-    }
+}
 
-    void display() {
-        Node* temp = head;
-        while (temp != NULL) {
-            cout << temp->val << " ";
-            temp = temp->next;
-        }
-        cout << endl;
-    }
-};
-
-int main() {
-    LinkedList ll;
-    ll.insertAtEnd(10);
-    ll.insertAtEnd(20);
-    ll.display();
-    return 0;
+int main(){
+    Node* head=new Node(2);
+    head->next=new Node(3);
+    head->next->next=new Node(4);
+    head->next->next=new Node(5);
+    cout<<"original linkedlist: ";
+    printList(head);
+    cout<<"after inserting linkedlist: ";
+    int data=1;
+    head=insertAtFront(head,data);
+    printList(head);
 }
