@@ -1,4 +1,4 @@
-#include<iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
 //--------------------------------------------------------------------
@@ -210,3 +210,54 @@ using namespace std;
 
 
 //--------------------------------------------------------------------
+
+//double linkedlist 
+ 
+struct link {
+    int data;
+    struct link* next;
+    struct link* prev;
+};
+
+struct link* start = NULL;
+struct link* current = NULL;
+struct link* node = NULL;
+
+void create() {
+    int n;
+    cout << "How many nodes you want to create: ";
+    cin >> n;
+    cout << "Enter the elements: ";
+    
+    for (int i = 0; i < n; i++) {
+        node = new link();  // Use 'new' to allocate memory
+        cin >> node->data;
+        node->next = NULL;  // Set the next pointer to NULL
+        node->prev = NULL;
+
+        if (start == NULL) {
+            start = node;    // Initialize start if it's the first node
+            current = node;
+        } else {
+            current->next = node;  // Link the previous node to the new node
+            node->prev = current;  // Set the previous pointer of the new node
+            current = node;        // Move the current pointer forward
+        }
+    }
+}
+
+void display() {
+    struct link* ptr = start;
+    cout << "List elements: ";
+    while (ptr != NULL) {
+        cout << ptr->data << " ";  // Add a space to separate elements
+        ptr = ptr->next;
+    }
+    cout << endl;
+}
+
+int main() {
+    create();
+    display();
+    return 0;
+}
