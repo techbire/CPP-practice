@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 
-
+//--------------------------------------------------------------------
 
 
 //printing node
@@ -60,7 +60,7 @@ using namespace std;
 
 
 
-
+//--------------------------------------------------------------------
 
 //node pointer
 //why pointer -traversing easy hoti hai above wali se!
@@ -109,34 +109,33 @@ using namespace std;
 // }
 
 
+//--------------------------------------------------------------------
 
-//linkedlist class
+//insert at end linkedlist class
 
-
-
-// class Node {
+// class node {
 // public:
 //     int val;
-//     Node* next;
-//     Node(int val) {
+//     node* next;
+//     node(int val) {
 //         this->val = val;
 //         this->next = NULL;
 //     }
 // };
 
-// class LinkedList {
+// class linkedlist {
 // public: // Make the LinkedList constructor public
-//     Node* head;
-//     Node* tail;
+//     node* head;
+//     node* tail;
 //     int size;
 
-//     LinkedList() { // Constructor is now public
+//     linkedlist() { // Constructor is now public
 //         head = tail = NULL;
 //         size = 0;
 //     }
 
-//     void insertAtEnd(int val) {
-//         Node* temp = new Node(val);
+//     void insertatend(int val) {
+//         node* temp = new node(val);
 //         if (size == 0) {
 //             head = tail = temp;
 //         } else {
@@ -147,7 +146,7 @@ using namespace std;
 //     }
 
 //     void display() {
-//         Node* temp = head;
+//         node* temp = head;
 //         while (temp != NULL) {
 //             cout << temp->val << " ";
 //             temp = temp->next;
@@ -157,52 +156,57 @@ using namespace std;
 // };
 
 // int main() {
-//     LinkedList ll;
-//     ll.insertAtEnd(10);
-//     ll.insertAtEnd(20);
+//     linkedlist ll;
+//     ll.insertatend(10);
+//     ll.insertatend(20);
 //     ll.display();
 //     return 0;
 // }
 
+// --------------------------------------------------------------------
 
 
 
 //insertion the node at the beginning of linkedlist
-struct Node{
-    int data;
-    Node* next;
-    Node(int new_data){
-        data=new_data;
-        next=nullptr;
-    }
-};
+// struct node{
+//     int data;
+//     node* next;
+//     node(int new_data){
+//         data=new_data;
+//         next=nullptr;
+//     }
+// };
 
 
-Node* insertAtFront(Node* head, int new_data){
-    Node* new_node = new Node(new_data);
-    new_node->next=head;
-    return new_node;
-}
+// node* insertatfront(node* head, int new_data){
+//     node* new_node = new node(new_data);
+//     new_node->next=head;
+//     return new_node;
+// }
 
-void printList(Node* head){
-    Node* curr=head;
-    while(curr !=nullptr){
-        cout<<" "<<curr->data;
-        curr=curr->next;
-    }
-    cout<<endl;
+// void printlist(node* head){
+//     node* curr=head;
+//     while(curr !=nullptr){
+//         cout<<" "<<curr->data;
+//         curr=curr->next;
+//     }
+//     cout<<endl;
 
-}
+// }
 
-int main(){
-    Node* head=new Node(2);
-    head->next=new Node(3);
-    head->next->next=new Node(4);
-    head->next->next=new Node(5);
-    cout<<"original linkedlist: ";
-    printList(head);
-    cout<<"after inserting linkedlist: ";
-    int data=1;
-    head=insertAtFront(head,data);
-    printList(head);
-}
+// int main(){
+//     node* head=new node(2);
+//     head->next=new node(3);
+//     head->next->next=new node(4);
+//     head->next->next=new node(5);
+//     cout<<"original linkedlist: ";
+//     printlist(head);
+//     cout<<"after inserting linkedlist: ";
+//     int data=1;
+//     head=insertatfront(head,data);
+//     printlist(head);
+// }
+
+
+
+//--------------------------------------------------------------------
