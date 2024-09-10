@@ -104,6 +104,28 @@ public:
         size--;
     }
 
+    // Delete at tail function
+    void deleteatindex(int index){
+        if(size==0){
+            cout<<"List is empty!";
+            return;
+        }
+        else if(index<0 || index>=size){
+            cout<<"Invalid index";
+            return;
+        }
+        else if(index==0) return deleteathead();
+        else if(index==size-1) return deleteattail();
+        else{
+            node* temp=head;
+            for(int i=1;i<=index-1;i++){
+                temp=temp->next;
+            }
+            temp->next=temp->next->next;
+            size--;
+        }
+    }
+
     // Display the linked list
     void display() {
         node* temp = head;
@@ -144,5 +166,6 @@ int main() {
     ll.deleteattail();     // Remove 40
     ll.display();          // Output: 50 10 20 80 30
 
+    ll.deleteatindex(3);   // Output: 50 10 20 30
     return 0;
 }
