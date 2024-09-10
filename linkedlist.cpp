@@ -104,7 +104,7 @@ public:
         size--;
     }
 
-    // Delete at tail function
+    // Delete at index
     void deleteatindex(int index){
         if(size==0){
             cout<<"List is empty!";
