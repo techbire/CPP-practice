@@ -1,3 +1,19 @@
+// Sample test cases :
+
+// Input 1 :
+// 3
+// John 1
+// Alice 0
+// Bob 1
+
+// Output 1 :
+// Attendance Report:
+// John: Present
+// Alice: Absent
+// Bob: Present
+
+
+
 #include <iostream>
 #include <vector>
 #include <string>
