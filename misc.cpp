@@ -110,26 +110,35 @@
 
 // #include <iostream>
 // #include <vector>
-// #include <algorithm>  // For sort()
+// #include <algorithm>
+// #include <sstream>
 
 // using namespace std;
 
 // int main() {
-//     int n;
-//     cout << "Enter the number of elements: ";
-//     cin >> n;
+//     string input;
+//     vector<int> nums;
 
-//     vector<int> nums(n);
-
-//     // Input the elements
+//     // Get the input in one line
 //     cout << "Enter the elements: ";
-//     for (int i = 0; i < n; i++) {
-//         cin >> nums[i];
+//     getline(cin, input); // Reading the entire line
+
+//     // Use a stringstream to parse the input and convert to integers
+//     stringstream ss(input);
+//     int num;
+//     while (ss >> num) {
+//         nums.push_back(num);
+//     }
+
+//     // If no elements were entered
+//     if (nums.empty()) {
+//         cout << "No elements entered!" << endl;
+//         return 0;
 //     }
 
 //     // Check if all elements are the same
 //     bool allSame = true;
-//     for (int i = 1; i < n; i++) {
+//     for (int i = 1; i < nums.size(); i++) {
 //         if (nums[i] != nums[0]) {
 //             allSame = false;
 //             break;
