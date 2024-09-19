@@ -1,4 +1,5 @@
-#include<iostream>
+#include <iostream>
+#include <cstring>
 using namespace std;
 
 // class Stack {
@@ -94,89 +95,177 @@ using namespace std;
 // }
 
 
-// cpp
 
 
-struct Node {
-    int data;
-    Node *next;
-};
 
-class Stack {
-private:
-    Node *top;
+// struct Node {
+//     int data;
+//     Node *next;
+// };
 
-public:
-    Stack() {
-        top = NULL;
+// class Stack {
+// private:
+//     Node *top;
+
+// public:
+//     Stack() {
+//         top = NULL;
+//     }
+
+//     void push(int val) {
+//         Node *newNode = new Node;
+//         newNode->data = val;
+//         newNode->next = top;
+//         top = newNode;
+//     }
+
+//     int pop() {
+//         if (top == NULL) {
+//             cout << "Stack underflow" << endl;
+//             return -1;  // Return a special value to indicate underflow
+//         } else {
+//             int poppedValue = top->data;
+//             Node *temp = top;
+//             top = top->next;
+//             delete temp;
+//             return poppedValue;
+//         }
+//     }
+
+//     void display() {
+//         if (top == NULL) {
+//             cout << "Stack is empty" << endl;
+//         } else {
+//             Node *ptr = top;
+//             cout << "Stack elements: ";
+//             while (ptr != NULL) {
+//                 cout << ptr->data << " ";
+//                 ptr = ptr->next;
+//             }
+//             cout << endl;
+//         }
+//     }
+// };
+
+// int main() {
+//     Stack s;
+//     int choice;
+
+//     while (true) {
+//         cout << "1. Push" << endl;
+//         cout << "2. Pop" << endl;
+//         cout << "3. Display" << endl;
+//         cout << "4. Exit" << endl;
+//         cout << "Enter your choice: ";
+//         cin >> choice;
+
+//         switch (choice) {
+//         case 1:
+//             int val;
+//             cout << "Enter the value to push: ";
+//         default:
+//             cout << "Invalid choice" << endl;
+//         }
+//     }
+
+//     return 0;
+// }
+
+//           cin >> val;
+//             s.push(val);
+//             break;
+//         case 2:
+//             s.pop();
+//             break;
+//         case 3:
+//             s.display();
+//             break;
+//         case 4:
+//             exit(0);  // To terminate the program
+  
+
+
+
+
+//to convert an infix expression to a prefix expression using a stack
+
+char infix[10], prefix[10], stack[10];
+int length, pos = 0, top = -1;
+char symbol, temp;
+
+void push(char symbol) {
+    top = top + 1;
+    stack[top] = symbol;
+}
+
+char pop() {
+    char sym = stack[top];
+    top = top - 1;
+    return sym;
+}
+
+int precedence(char symb) {
+    switch(symb) {
+        case '^': return 3;
+        case '*':
+        case '/': return 2;
+        case '+':
+        case '-': return 1;
+        case '(': 
+        case ')': return 0;
+        case '#': return -1;
+        default: return -1; // Handle unexpected cases
     }
+}
 
-    void push(int val) {
-        Node *newNode = new Node;
-        newNode->data = val;
-        newNode->next = top;
-        top = newNode;
-    }
-
-    int pop() {
-        if (top == NULL) {
-            cout << "Stack underflow" << endl;
-            return -1;  // Return a special value to indicate underflow
-        } else {
-            int poppedValue = top->data;
-            Node *temp = top;
-            top = top->next;
-            delete temp;
-            return poppedValue;
+void infixtoprefix(char infix[]) {
+    length = strlen(infix);
+    push('#');
+    for(int i = length - 1; i >= 0; i--) {
+        symbol = infix[i];
+        switch(symbol) {
+            case ')': 
+                push(symbol);
+                break;
+            case '(':
+                while((temp = pop()) != ')') {
+                    prefix[pos++] = temp;
+                }
+                break;
+            case '+':
+            case '-':
+            case '*':
+            case '/':
+            case '^':
+                while(precedence(stack[top]) > precedence(symbol)) {
+                    temp = pop();
+                    prefix[pos++] = temp;
+                }
+                push(symbol);
+                break;
+            default:
+                prefix[pos++] = symbol;
+                break;
         }
     }
-
-    void display() {
-        if (top == NULL) {
-            cout << "Stack is empty" << endl;
-        } else {
-            Node *ptr = top;
-            cout << "Stack elements: ";
-            while (ptr != NULL) {
-                cout << ptr->data << " ";
-                ptr = ptr->next;
-            }
-            cout << endl;
-        }
+    
+    while(top > -1) {
+        temp = pop();
+        prefix[pos++] = temp;
     }
-};
+    
+    // Reverse the prefix array to get the correct order
+    for(int i = 0; i < pos / 2; i++) {
+        swap(prefix[i], prefix[pos - i - 1]);
+    }
+    prefix[pos] = '\0'; // Null-terminate the prefix string
+}
 
 int main() {
-    Stack s;
-    int choice;
-
-    while (true) {
-        cout << "1. Push" << endl;
-        cout << "2. Pop" << endl;
-        cout << "3. Display" << endl;
-        cout << "4. Exit" << endl;
-        cout << "Enter your choice: ";
-        cin >> choice;
-
-        switch (choice) {
-        case 1:
-            int val;
-            cout << "Enter the value to push: ";
-            cin >> val;
-            s.push(val);
-            break;
-        case 2:
-            s.pop();
-            break;
-        case 3:
-            s.display();
-            break;
-        case 4:
-            exit(0);  // To terminate the program
-        default:
-            cout << "Invalid choice" << endl;
-        }
-    }
-
+    cout << "Enter the infix expression: ";
+    cin >> infix;
+    infixtoprefix(infix);
+    cout << "Infix expression: " << infix << endl;
+    cout << "Prefix expression: " << prefix << endl;
     return 0;
 }
