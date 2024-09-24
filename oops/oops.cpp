@@ -103,19 +103,38 @@
 
 
 //writing and reading a file
+// #include<iostream>
+// #include<fstream>
+// using namespace std;
+// int main(){
+//     char s[30];
+//     ofstream of("result.txt");
+//     of<<"hello ansh how are you?";
+//     of.close();
+//     cout<<"data saved\n";
+//     ifstream inf("result.txt");
+//     inf>>s;
+//     cout<<s;
+//     inf.close();
+//     return 0;
+
+// }
+
+
+
+//apppend mod
 #include<iostream>
 #include<fstream>
 using namespace std;
 int main(){
-    char s[30];
-    ofstream of("result.txt");
-    of<<"hello ansh how are you?";
-    of.close();
-    cout<<"data saved\n";
-    ifstream inf("result.txt");
-    inf>>s;
-    cout<<s;
-    inf.close();
-    return 0;
+    char s[300];
+    ofstream fileout;
+    ifstream filein;
+    fileout.open("result.txt",ios::app);
+    fileout<<"hey hello";
+    fileout.close();
 
+    filein.open("result.txt",ios::in);
+    filein.getline(s,30);
+    cout<<s;
 }
