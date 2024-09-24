@@ -142,25 +142,52 @@
 
 
 //manipulators of fstream
+// #include<iostream>
+// #include<fstream>
+// using namespace std;
+// int main(){
+//     char s[300];
+//     ofstream fileout;
+//     fstream file;
+//     fileout.open("result.txt",ios::out);
+//     fileout<<"hey 1";
+//     fileout.close();
+
+//     file.open("result.txt",ios::in|ios::out);
+//     cout<<file.tellg();
+//     cout<<file.tellp();
+//     file.seekp(6);
+//     file.seekg(6);
+//     cout<<file.tellg();
+//     cout<<file.tellp();
+//     file>>s;
+//     cout<<s;
+
+// }
+
+
+
+
+//putting string in file  {input based}
 #include<iostream>
 #include<fstream>
+#include<string.h>
+
 using namespace std;
 int main(){
     char s[300];
-    ofstream fileout;
+    cout<<"enter a string: ";
+    cin>>s;
+    int len=strlen(s);
     fstream file;
-    fileout.open("result.txt",ios::out);
-    fileout<<"hey 1";
-    fileout.close();
-
     file.open("result.txt",ios::in|ios::out);
-    cout<<file.tellg();
-    cout<<file.tellp();
-    file.seekp(6);
-    file.seekg(6);
-    cout<<file.tellg();
-    cout<<file.tellp();
-    file>>s;
-    cout<<s;
-
+    for(int i=0;i<len;i++){
+        file.put(s[i]);
+        file.seekg(0);
+        char ch;
+        while(file){
+            file.get(ch);
+            cout<<ch;
+        }
+    }
 }
