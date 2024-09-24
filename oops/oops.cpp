@@ -170,8 +170,9 @@
 
 //putting string in file  {input based}
 #include<iostream>
-#include<fstream>
 #include<string.h>
+#include<fstream>
+
 
 using namespace std;
 int main(){
@@ -183,11 +184,13 @@ int main(){
     file.open("result.txt",ios::in|ios::out);
     for(int i=0;i<len;i++){
         file.put(s[i]);
+    }
         file.seekg(0);
         char ch;
-        while(file){
-            file.get(ch);
-            cout<<ch;
-        }
+        
+    while (file.get(ch)) {
+        cout << ch;
     }
-}
+        return 0;
+
+    }
