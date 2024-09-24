@@ -123,18 +123,44 @@
 
 
 //apppend mod
+// #include<iostream>
+// #include<fstream>
+// using namespace std;
+// int main(){
+//     char s[300];
+//     ofstream fileout;
+//     ifstream filein;
+//     fileout.open("result.txt",ios::app);
+//     fileout<<"hey hello";
+//     fileout.close();
+
+//     filein.open("result.txt",ios::in);
+//     filein.getline(s,30);
+//     cout<<s;
+// }
+
+
+
+//manipulators of fstream
 #include<iostream>
 #include<fstream>
 using namespace std;
 int main(){
     char s[300];
     ofstream fileout;
-    ifstream filein;
-    fileout.open("result.txt",ios::app);
-    fileout<<"hey hello";
+    fstream file;
+    fileout.open("result.txt",ios::out);
+    fileout<<"hey 1";
     fileout.close();
 
-    filein.open("result.txt",ios::in);
-    filein.getline(s,30);
+    file.open("result.txt",ios::in|ios::out);
+    cout<<file.tellg();
+    cout<<file.tellp();
+    file.seekp(6);
+    file.seekg(6);
+    cout<<file.tellg();
+    cout<<file.tellp();
+    file>>s;
     cout<<s;
+
 }
