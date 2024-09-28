@@ -56,11 +56,3 @@
 
 
 //----------------------------------------------------------------------------------------
-//logic for remove duplicates from sorted list
-
-class Solution {
-public:
-    ListNode* deleteDuplicates(ListNode* head) {
-        
-    }
-};

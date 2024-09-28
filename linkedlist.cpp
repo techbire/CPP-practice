@@ -70,6 +70,28 @@
 //         }
 //     }
 
+
+//     // Get at index function
+// int getatindex(int index){
+//     if(index<0||index>=size){
+//         cout<<"Invalid Index";
+//         return -1;
+//     }
+//     else if(index==0){
+//         return head->val;
+//     }
+//     else if(index==size-1){
+//         return tail->val;
+//     }
+//     else{
+//         node* temp=head;
+//         for(int i=1;i<index;i++){
+//             temp=temp->next;
+//         }
+//         return temp->val;
+//     }
+// }
+
 //     // Delete at head function
 // //approach- delete at head : 
 // //                 if size==0--> list is empty
@@ -189,10 +211,6 @@ class node{
     }
 };
 
-
-
-
-
 // Linked list class
 class dll {
 public:
@@ -263,13 +281,12 @@ public:
         if (size == 0) {
             cout << "list is empty" << endl;
             return;
-        } else {
-            node* temp = head;
-            head = head->next;
-            delete temp;
+        } 
+        head=head->next;
+        if(head)head->prev=nullptr;
+        if(head==nullptr)tail=nullptr;  //extra
             size--;
         }
-    }
 
     // Delete at tail function
     void deleteattail() {
@@ -277,15 +294,16 @@ public:
             cout << "list is empty" << endl;
             return;
         }
-        node* temp = head;
-        while (temp->next != tail) {
-            temp = temp->next;
+        else if(size==1){   //extra
+            deleteathead();
+            return;
         }
-        delete tail;
-        temp->next = NULL;
-        tail = temp;
+
+        node* temp = tail->prev;
+        temp->next=nullptr;
+        tail=temp;
         size--;
-    }
+        }
 
     // Delete at index
     void deleteatindex(int index){
@@ -304,9 +322,42 @@ public:
             for(int i=1;i<=index-1;i++){
                 temp=temp->next;
             }
-            temp->next=temp->next->next;
-            size--;
+            temp->next=temp->next->next;  //extra
+            temp->next->prev=temp;       //extra
+            size--;   
         }
+    }
+
+
+    // Get at index function
+int getatindex(int index){
+    if(index<0||index>=size){
+        cout<<"Invalid Index";
+        return -1;
+    }
+    else if(index==0){
+        return head->val;
+    }
+    else if(index==size-1){
+        return tail->val;
+    }
+    else{
+        if(index<size/2){
+            node* temp=head;
+            for(int i=1;i<=index;i++){
+                temp=temp->next;
+            }
+            return temp->val;
+        }
+        else{
+            node* temp=tail;
+            for(int i=1;i<size-index;i++){
+                temp=temp->prev;
+            }
+            return temp->val;
+        }
+    
+    }
     }
 
     // Display the linked list
@@ -320,4 +371,25 @@ public:
     }
 };
 
-
+int main(){
+  dll list;
+  list.insertatend(10);
+  list.insertatend(20);
+  list.insertatend(30);
+  list.display();
+  list.insertatend(40);
+  list.display(); 
+  list.insertathead(50);
+  list.display();
+  list.insertatindex(2,60);
+  list.display();
+  list.deleteathead();
+  list.display();
+  list.deleteattail();
+  list.display();
+  list.insertatend(90);
+  list.display();
+  list.deleteatindex(3);
+  list.display();
+  cout<<list.getatindex(2);
+}
