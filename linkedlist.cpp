@@ -415,68 +415,82 @@ struct Node {
     }
 };
 
-// Function to insert a node at the beginning of the list
-Node* insertb(Node* head, int x) {
-    Node* new_node = new Node(x);
-    new_node->next = head;
-    return new_node;
-}
-
-// Function to insert a node at the end of the list
-Node* inserte(Node* head, int x) {
+// Function to insert a node at the end of the circular linked list
+Node* insert(Node* head, int x) {
     Node* new_node = new Node(x);
     if (head == nullptr) {
-        return new_node; // If the list is empty, the new node becomes the head
+        new_node->next = new_node; // Point to itself
+        return new_node;           // New node is the only node
     }
+
     Node* temp = head;
-    while (temp->next != nullptr) {
-        temp = temp->next;
+    while (temp->next != head) {
+        temp = temp->next;       // Traverse to the last node
     }
-    temp->next = new_node;
-    return head;
+
+    temp->next = new_node;       // Link the last node to the new node
+    new_node->next = head;       // Point new node to head
+    return head;                 // Return the head of the list
 }
 
-// Function to delete a node from the beginning of the list
-Node* deleteb(Node* head) {
+// Function to delete a node from the circular linked list
+Node* deleteNode(Node* head) {
     if (head == nullptr) {
         cout << "List is empty, nothing to delete." << endl;
         return nullptr;
     }
+
+    if (head->next == head) {    // Only one node in the list
+        delete head;
+        return nullptr;
+    }
+
     Node* temp = head;
-    head = head->next;
-    delete temp; // Free the memory of the old head
-    return head;
+    while (temp->next != head) {
+        temp = temp->next;       // Traverse to the last node
+    }
+
+    Node* to_delete = head;      // Node to be deleted
+    head = head->next;           // Move head to the next node
+    temp->next = head;           // Last node points to new head
+    delete to_delete;            // Free memory
+    return head;                 // Return the new head of the list
 }
 
-// Function to display the linked list
+// Function to display the circular linked list
 void display(Node* head) {
     if (head == nullptr) {
         cout << "List is empty." << endl;
         return;
     }
+
     Node* temp = head;
-    while (temp != nullptr) {
+    do {
         cout << temp->data << " -> ";
         temp = temp->next;
-    }
-    cout << "NULL" << endl;
+    } while (temp != head);
+    cout << "(back to head)" << endl; // Indicate circularity
 }
 
-// Function to reverse the linked list
+// Function to reverse the circular linked list
 Node* reverse(Node* head) {
-    Node* prev = nullptr;
-    Node* current = head;
+    if (head == nullptr || head->next == head) {
+        return head; // Nothing to reverse if empty or only one node
+    }
+
+    Node* prev = head;
+    Node* current = head->next;
     Node* next = nullptr;
-    
-    while (current != nullptr) {
+
+    while (current != head) {
         next = current->next;  // Store the next node
         current->next = prev;  // Reverse the current node's pointer
         prev = current;        // Move prev to current
         current = next;        // Move current to next
     }
-    
-    head = prev; // Update the head to the new front (last node becomes the new head)
-    return head;
+
+    head->next = prev; // Update the head to point to the new first node
+    return prev;       // Return the new head of the list
 }
 
 int main() {
@@ -484,24 +498,22 @@ int main() {
     Node* head = nullptr;
 
     // Insert nodes
-    head = inserte(head, 10);
-    head = inserte(head, 20);
-    head = inserte(head, 30);
-    head = inserte(head, 40);
+    head = insert(head, 10);
+    head = insert(head, 20);
+    head = insert(head, 30);
+    head = insert(head, 40);
 
-    cout << "Before deletion:" << endl;
+    cout << "Circular linked list after insertions:" << endl;
     display(head);
 
-    // Delete the first node
-    head = deleteb(head);
-
-    cout << "After deletion:" << endl;
+    // Delete a node
+    head = deleteNode(head);
+    cout << "Circular linked list after deletion:" << endl;
     display(head);
 
-    // Reverse the linked list
+    // Reverse the circular linked list
     head = reverse(head);
-
-    cout << "After reversing the list:" << endl;
+    cout << "Circular linked list after reversing:" << endl;
     display(head);
 
     return 0;
