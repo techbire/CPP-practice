@@ -143,12 +143,81 @@ using namespace std;
 
 //------------------------------------------------------------------------------------------------------------------------
 //Linkedlist implementation on stack
+#include <iostream>
+using namespace std;
 
+class node {
+public:
+    int val;
+    node* next;
+    node(int val) {
+        this->val = val;
+        this->next = nullptr;
+    }
+};
 
+class Stack {
+public:
+    node* head;
+    int size;
 
+    Stack() { // Constructor name fixed
+        head = nullptr;
+        size = 0;
+    }
 
+    void push(int val) {
+        node* temp = new node(val);
+        temp->next = head;
+        head = temp;
+        size++;
+    }
 
+    void pop() {
+        if (head == nullptr) {
+            cout << "Stack is empty." << endl;
+            return;
+        }
+        node* toDelete = head;
+        head = head->next;
+        delete toDelete; // Free memory
+        size--;
+    }
 
+    int top() {
+        if (head == nullptr) {
+            cout << "Stack is empty." << endl;
+            return -1;
+        }
+        return head->val;
+    }
+
+    void print(node* temp) {
+        if (temp == nullptr) return;
+        print(temp->next);
+        cout << temp->val << " ";
+    }
+
+    void display() {
+        node* temp = head;
+        print(temp);
+        cout << endl;
+    }
+};
+
+int main() {
+    Stack st;
+    cout << st.top() << endl; // Output should indicate stack is empty
+    st.push(10);
+    st.push(20);
+    st.push(30);
+    st.push(40);
+    cout << "Size: " << st.size << endl; // Display size
+    st.pop();
+    cout << "Size after pop: " << st.size << endl; // Display size after pop
+    cout << "Top element: " << st.top() << endl; // Display top element
+    st.display(); // Display stack contents
+}
 
 
 
