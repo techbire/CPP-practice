@@ -46,101 +46,103 @@ using namespace std;
 //-----------------------------------------------------------------------------------------------------------------------
 
 
-void print(stack<int>& st) {
-    stack<int> temp;
-    // Transfer elements to temp stack and print them
-    while (st.size() > 0) {
-        temp.push(st.top());
-        st.pop();
-    }
-
-    // Putting elements back from temp to st
-    while (temp.size() > 0) {
-        cout << temp.top() << " ";
-        st.push(temp.top());
-        temp.pop();
-    }
-
-    cout << endl;
-}
-
-void pushAtBottom(stack<int>& st, int val) {
-    stack<int> temp;
-
-    // Move elements from st to temp
-    while (st.size() > 0) {
-        temp.push(st.top());
-        st.pop();
-    }
-
-    // Push the value at the bottom of the stack
-    st.push(val);
-
-    // Move elements back from temp to st
-    while (temp.size() > 0) {
-        st.push(temp.top());
-        temp.pop();
-    }
-}
-
-void pushAtIdx(stack<int>& st, int idx, int val) {
-    stack<int> temp;
-
-    // Move elements until idx position is reached
-    while (st.size() > idx) {
-        temp.push(st.top());
-        st.pop();
-    }
-
-    // Push the value at the specific index
-    st.push(val);
-
-    // Move remaining elements back to st
-    while (temp.size() > 0) {
-        st.push(temp.top());
-        temp.pop();
-    }
-}
-
-int main() {
-    stack<int> st;
-
-    st.push(10);
-    st.push(20);
-    st.push(30);
-    st.push(40);
-    st.push(50);
-
-    print(st);
-
-    pushAtBottom(st, 0);
-    print(st);
-
-    pushAtIdx(st, 2, 99); // Push 99 at index 2
-    print(st);
-
-    return 0;
-}
+//push element at bottom / any bottom
 
 
 
+// void print(stack<int>& st) {
+//     stack<int> temp;
+//     // Transfer elements to temp stack and print them
+//     while (st.size() > 0) {
+//         temp.push(st.top());
+//         st.pop();
+//     }
+
+//     // Putting elements back from temp to st
+//     while (temp.size() > 0) {
+//         cout << temp.top() << " ";
+//         st.push(temp.top());
+//         temp.pop();
+//     }
+
+//     cout << endl;
+// }
+
+// void pushAtBottom(stack<int>& st, int val) {
+//     stack<int> temp;
+
+//     // Move elements from st to temp
+//     while (st.size() > 0) {
+//         temp.push(st.top());
+//         st.pop();
+//     }
+
+//     // Push the value at the bottom of the stack
+//     st.push(val);
+
+//     // Move elements back from temp to st
+//     while (temp.size() > 0) {
+//         st.push(temp.top());
+//         temp.pop();
+//     }
+// }
+
+// void pushAtIdx(stack<int>& st, int idx, int val) {
+//     stack<int> temp;
+
+//     // Move elements until idx position is reached
+//     while (st.size() > idx) {
+//         temp.push(st.top());
+//         st.pop();
+//     }
+
+//     // Push the value at the specific index
+//     st.push(val);
+
+//     // Move remaining elements back to st
+//     while (temp.size() > 0) {
+//         st.push(temp.top());
+//         temp.pop();
+//     }
+// }
+
+// int main() {
+//     stack<int> st;
+
+//     st.push(10);
+//     st.push(20);
+//     st.push(30);
+//     st.push(40);
+//     st.push(50);
+
+//     print(st);
+
+//     pushAtBottom(st, 0);
+//     print(st);
+
+//     pushAtIdx(st, 2, 99); // Push 99 at index 2
+//     print(st);
+
+//     return 0;
+// }
 
 
 
+//-----------------------------------------------------------------------------------------------------------------------
+
+// //reverse a linkedlist using recurssion
+// void displayrev(stack<int>&st){
+//     if(st.size()==0)return;
+//     int x=st.top();
+//     cout<<x<<" ";   //is line ko agar ham displayrev(st) ke niche rakhte hai toh display kabel hoga bina recurssion ke!!
+//     st.pop();
+//     displayrev(st);
+//     st.push(x);   // phir se dalna chalu hoga
+// }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+//------------------------------------------------------------------------------------------------------------------------
+//Linkedlist implementation on stack
 
 
 
