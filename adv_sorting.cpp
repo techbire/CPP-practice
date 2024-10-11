@@ -1,4 +1,5 @@
 //Merge Sort
+//tc: nlogn
 
 #include <iostream>
 using namespace std;
@@ -52,6 +53,7 @@ using namespace std;
 //----------------------------------------------------------------------------------------
 
 //Quick Sort
+//tc: nlogn
 
 int main() {
     int a[] = {9, 3, 7, 6, 2, 8, 1, 5};
