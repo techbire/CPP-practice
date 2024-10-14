@@ -231,31 +231,62 @@
 
 //binary operator overloading
 
+// #include<iostream>
+// using namespace std;
+// class data{
+//     public:
+//     int num1;
+//     data(int n){
+//         num1=n;
+//     }
+//         data operator+(data d2);
+//         void display(){
+//             cout<<"value of num1="<<num1;         
+//             } };
+            
+//             data data::operator+(data d2)
+//             {
+//                 data d3(0);
+//                 d3.num1=num1+d2.num1;
+//                 return d3;
+
+//             }
+
+
+// int main(){
+//     data d1(10),d2(20),result(0);   //10+20
+//     result=d1+d2;
+//     result.display();
+//     return 0;
+// }
+
+
+
+//type conversion
+
 #include<iostream>
 using namespace std;
-class data{
+class time{
+    private:
+    int h,m;
     public:
-    int num1;
-    data(int n){
-        num1=n;
+    time(){
+        h=m=0;
     }
-        data operator+(data d2);
-        void display(){
-            cout<<"value of num1="<<num1;         
-            } };
-            
-            data data::operator+(data d2)
-            {
-                data d3(0);
-                d3.num1=num1+d2.num1;
-                return d3;
+    time(int t){
+        h=t/60;
+        m=t%60;
+    }
 
-            }
-
-
+void show_data(){
+    cout<<h<<"hrs"<<m<<"mins";
+}
+};
 int main(){
-    data d1(10),d2(20),result(0);   //10+20
-    result=d1+d2;
-    result.display();
-    return 0;
+    int min;
+    cout<<"\nenter the mintues: ";
+    cin>>min;
+    time t1;
+    t1=min;
+    t1.show_data();
 }
