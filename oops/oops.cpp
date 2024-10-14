@@ -169,28 +169,61 @@
 
 
 //putting string in file  {input based}
-#include<iostream>
-#include<string.h>
-#include<fstream>
+// #include<iostream>
+// #include<string.h>
+// #include<fstream>
 
 
-using namespace std;
-int main(){
-    char s[300];
-    cout<<"enter a string: ";
-    cin>>s;
-    int len=strlen(s);
-    fstream file;
-    file.open("result.txt",ios::in|ios::out);
-    for(int i=0;i<len;i++){
-        file.put(s[i]);
-    }
-        file.seekg(0);
-        char ch;
+// using namespace std;
+// int main(){
+//     char s[300];
+//     cout<<"enter a string: ";
+//     cin>>s;
+//     int len=strlen(s);
+//     fstream file;
+//     file.open("result.txt",ios::in|ios::out);
+//     for(int i=0;i<len;i++){
+//         file.put(s[i]);
+//     }
+//         file.seekg(0);
+//         char ch;
         
-    while (file.get(ch)) {
-        cout << ch;
-    }
-        return 0;
+//     while (file.get(ch)) {
+//         cout << ch;
+//     }
+//         return 0;
 
+//     }
+
+
+
+
+//operator overloading
+#include<iostream>
+using namespace std;
+class data{
+    public:
+    int num1;
+    data(int n){
+        num1=n;
     }
+        data operator++();
+        void display(){
+            cout<<"value of num1="<<num1;         
+            } };
+            
+            data data::operator++()
+            {
+                num1=++num1;
+                return num1;
+            }
+
+
+int main(){
+    data d1(10),result(0);
+    result=++d1;
+    result.display();
+    return 0;
+}
+
+
