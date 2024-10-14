@@ -199,6 +199,38 @@
 
 
 //operator overloading
+//uniary operator overloading
+
+// #include<iostream>
+// using namespace std;
+// class data{
+//     public:
+//     int num1;
+//     data(int n){
+//         num1=n;
+//     }
+//         data operator++();
+//         void display(){
+//             cout<<"value of num1="<<num1;         
+//             } };
+            
+//             data data::operator++()
+//             {
+//                 num1=++num1;
+//                 return num1;
+//             }
+
+
+// int main(){
+//     data d1(10),result(0);
+//     result=++d1;
+//     result.display();
+//     return 0;
+// }
+
+
+//binary operator overloading
+
 #include<iostream>
 using namespace std;
 class data{
@@ -207,23 +239,23 @@ class data{
     data(int n){
         num1=n;
     }
-        data operator++();
+        data operator+(data d2);
         void display(){
             cout<<"value of num1="<<num1;         
             } };
             
-            data data::operator++()
+            data data::operator+(data d2)
             {
-                num1=++num1;
-                return num1;
+                data d3(0);
+                d3.num1=num1+d2.num1;
+                return d3;
+
             }
 
 
 int main(){
-    data d1(10),result(0);
-    result=++d1;
+    data d1(10),d2(20),result(0);   //10+20
+    result=d1+d2;
     result.display();
     return 0;
 }
-
-
