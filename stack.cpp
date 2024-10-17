@@ -222,55 +222,55 @@ using namespace std;
 //------------------------------------------------------------------------------------------------------------------------
 //finding next greater element
 
-int main(){
+// int main(){
  
-    int n;
-    cin>>n;
-    int arr[n];
-    for(int i=0;i<n;i++){
-        cin>>arr[i];
-    }
-    for(int i=0;i<n;i++){
-        cout<<arr[i]<<" ";
-    }
-cout<<endl;
-
-int nge[n];
-
-// //brute force approach tc=0(n^2),sc=0(1)
-// for(int i=0;i<n;i++){
-//     nge[i]=-1;
-//     for(int j=i+1;j<n;j++){
-//         if(arr[j]<arr[i]){
-//             nge[i]=arr[j];
-//             break;
-//         }
+//     int n;
+//     cin>>n;
+//     int arr[n];
+//     for(int i=0;i<n;i++){
+//         cin>>arr[i];
 //     }
+//     for(int i=0;i<n;i++){
+//         cout<<arr[i]<<" ";
+//     }
+// cout<<endl;
+
+// int nge[n];
+
+// // //brute force approach tc=0(n^2),sc=0(1)
+// // for(int i=0;i<n;i++){
+// //     nge[i]=-1;
+// //     for(int j=i+1;j<n;j++){
+// //         if(arr[j]<arr[i]){
+// //             nge[i]=arr[j];
+// //             break;
+// //         }
+// //     }
+// // }
+
+
+// //optional approach, tc:0(n)   sc:0(n)
+// //using stack: pop,ans,push and reverse traverse 
+// stack<int>st;
+// nge[n-1]=-1;
+// st.push(arr[n-1]);
+// for(int i=n-2;i>=0;i--){
+// //pop all the elements smaller than arr[i]
+// while(st.size()>0&&st.top()<=arr[i]){
+//     st.pop();
+// }
+// if(st.size()==0) nge[i]=-1;
+// else nge[i]=st.top();
+// //push the arr[i];
+// st.push(arr[i]);
 // }
 
 
-//optional approach, tc:0(n)   sc:0(n)
-//using stack: pop,ans,push and reverse traverse 
-stack<int>st;
-nge[n-1]=-1;
-st.push(arr[n-1]);
-for(int i=n-2;i>=0;i--){
-//pop all the elements smaller than arr[i]
-while(st.size()>0&&st.top()<=arr[i]){
-    st.pop();
-}
-if(st.size()==0) nge[i]=-1;
-else nge[i]=st.top();
-//push the arr[i];
-st.push(arr[i]);
-}
-
-
-for(int i=0;i<n;i++){
-    cout<<nge[i]<<" ";
-}
-cout<<endl;
-}
+// for(int i=0;i<n;i++){
+//     cout<<nge[i]<<" ";
+// }
+// cout<<endl;
+// }
 
 
 
@@ -370,9 +370,6 @@ cout<<endl;
 // }
 
 
-
-
-
 // struct Node {
 //     int data;
 //     Node *next;
@@ -460,8 +457,151 @@ cout<<endl;
   
 
 
+//------------------------------------------------------------------------------------------------------------------------
+//Infix evaluation
+// int priority(char ch){
+//     if(ch=='+'||ch=='-')return 1;
+//     else return 2;
+// }
+
+// int solve(int val1,int val2, int ch){
+//     if(ch=='+')return val1+val2;
+//     if(ch=='-')return val1-val2;
+//     if(ch=='*')return val1*val2;
+//     else return val1/val2;
+// }
+
+// int main(){
+//     string s="2+6*4/8-3";
+//     stack<int>val;
+//     stack<int>op;
+//     for(int i=0;i<s.length();i++){
+//         if(s[i]>='0'&&s[i]<='9'){
+//             val.push(s[i]-'0');
+//     }
+//     else{ //s[i]--*,/,+,-
+//         if(op.size()==0 || priority(s[i])>priority(op.top()))
+//         op.push(s[i]);
+//         else{ //kaam {v1 op v2 from prev. in last till happen then if condition fullfill}
+//             while(op.size()>0&&priority(s[i])<=priority(op.top())){
+//                 //kaam happen
+//                 char ch=op.top();
+//                 op.pop();
+//                 int val2=val.top();
+//                 val.pop();
+//                 int val1=val.top();
+//                 val.pop();
+//                 int ans=solve(val1,val2,ch);
+//                 val.push(ans);
+//             }
+//             op.push(s[i]);
+//         }
+//     }
+// }
+// //the operartor stack can have values..so make them empty
+// while(op.size()>0){
+//         char ch=op.top();
+//         op.pop();
+//         int val2=val.top();
+//         val.pop();
+//         int val1=val.top();
+//         val.pop();
+//         int ans=solve(val1,val2,ch);
+//         val.push(ans);
+// }
+// cout<<val.top();
+// }
 
 
+//------------------------------------------------------------------------------------------------------------------------
+//Infix evaluation with braket
+int priority(char ch){
+    if(ch=='+'||ch=='-')return 1;
+    else return 2;
+}
+
+int solve(int val1,int val2, int ch){
+    if(ch=='+')return val1+val2;
+    if(ch=='-')return val1-val2;
+    if(ch=='*')return val1*val2;
+    else return val1/val2;
+}
+
+int main(){
+    string s="(7+9)*4/8-3";
+    stack<int>val;
+    stack<int>op;
+    for(int i=0;i<s.length();i++){
+        if(s[i]>='0'&&s[i]<='9'){
+            val.push(s[i]-'0');
+    }
+    else{ //s[i]--*,/,+,-,(,)
+        if(op.size()==0)op.push(s[i]);
+        else if(s[i]=='(')op.push(s[i]);
+        else if(op.top()=='(')op.push(s[i]);
+       
+        else if(s[i]==')'){
+            while(op.top()!='('){
+                char ch=op.top();
+                op.pop();
+                int val2=val.top();
+                val.pop();
+                int val1=val.top();
+                val.pop();
+                int ans=solve(val1,val2,ch);
+                val.push(ans); 
+            }
+            op.pop(); //open bkt removed
+        }
+         else if(priority(s[i])>priority(op.top()))op.push(s[i]);
+        else{ //kaam {v1 op v2 from prev. in last till happen then if condition fullfill}
+            while(op.size()>0&&priority(s[i])<=priority(op.top())){
+                //kaam happen
+                char ch=op.top();
+                op.pop();
+                int val2=val.top();
+                val.pop();
+                int val1=val.top();
+                val.pop();
+                int ans=solve(val1,val2,ch);
+                val.push(ans);
+            }
+            op.push(s[i]);
+        }
+    }
+}
+//the operartor stack can have values..so make them empty
+while(op.size()>0){
+        char ch=op.top();
+        op.pop();
+        int val2=val.top();
+        val.pop();
+        int val1=val.top();
+        val.pop();
+        int ans=solve(val1,val2,ch);
+        val.push(ans);
+}
+cout<<val.top();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//------------------------------------------------------------------------------------------------------------------------
 //to convert an infix expression to a prefix expression using a stack
 
 // char infix[10], prefix[10], stack[10];
