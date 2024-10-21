@@ -264,29 +264,81 @@
 
 //type conversion
 
+// #include<iostream>
+// using namespace std;
+// class time{
+//     private:
+//     int h,m;
+//     public:
+//     time(){
+//         h=m=0;
+//     }
+//     time(int t){
+//         h=t/60;
+//         m=t%60;
+//     }
+
+// void show_data(){
+//     cout<<h<<"hrs"<<m<<"mins";
+// }
+// };
+// int main(){
+//     int min;
+//     cout<<"\nenter the mintues: ";
+//     cin>>min;
+//     time t1;
+//     t1=min;
+//     t1.show_data();
+// }
+
+
+//order of execution of construction/destruction during single inheritance
+//{default constructor in both classes} [2base class+child]
 #include<iostream>
 using namespace std;
-class time{
-    private:
-    int h,m;
+class A
+{
     public:
-    time(){
-        h=m=0;
+    A()
+    {
+        cout<<"\ncalling default base class constuctor";
     }
-    time(int t){
-        h=t/60;
-        m=t%60;
+    ~A()
+    {
+        cout<<"\ncalling base class destructor";
     }
-
-void show_data(){
-    cout<<h<<"hrs"<<m<<"mins";
-}
 };
+
+
+class C
+{
+    public:
+    C()
+    {
+        cout<<"\ncalling default base class constuctor";
+    }
+    ~C()
+    {
+        cout<<"\ncalling base class destructor";
+    }
+};
+
+class B:public A,public C
+{
+    public:
+    B()
+    {
+        cout<<"\ncalling default derived contructor";
+    }
+    ~B()
+    {
+        cout<<"\ncalling derived class destructor";
+    }
+};
+
 int main(){
-    int min;
-    cout<<"\nenter the mintues: ";
-    cin>>min;
-    time t1;
-    t1=min;
-    t1.show_data();
+
+    B obj1;
+
+   return 0;
 }

@@ -205,136 +205,136 @@ using namespace std;
 
 
 //-----------------------------------------------------------------
+//Deque using linkedlist
+// class node{
+//     public:
+//     int val;
+//     node* next;
+//     node* prev;  //extra for ddl
+//     node(int val){
+//         this->val=val;
+//         this->next=nullptr;
+//         this->prev=nullptr; //look there is both nullptr
 
-class node{
-    public:
-    int val;
-    node* next;
-    node* prev;  //extra for ddl
-    node(int val){
-        this->val=val;
-        this->next=nullptr;
-        this->prev=nullptr; //look there is both nullptr
+//     }
+// };
 
-    }
-};
+// // Linked list class
+// class Deque {
+// public:
+//     node* head;
+//     node* tail;
+//     int size;
 
-// Linked list class
-class Deque {
-public:
-    node* head;
-    node* tail;
-    int size;
+//     Deque() {
+//         head = tail = NULL;
+//         size = 0;
+//     }
 
-    Deque() {
-        head = tail = NULL;
-        size = 0;
-    }
+//     // Insert at end function
+//     void pushback(int val) {
+//         node* temp = new node(val);
+//         if (size == 0) {
+//             head = tail = temp;
+//         } else {
+//             tail->next = temp;
+//             temp->prev=tail; //extra
+//             tail = temp;
+//         }
+//         size++;
+//     }
 
-    // Insert at end function
-    void pushback(int val) {
-        node* temp = new node(val);
-        if (size == 0) {
-            head = tail = temp;
-        } else {
-            tail->next = temp;
-            temp->prev=tail; //extra
-            tail = temp;
-        }
-        size++;
-    }
+//     // Insert at head function
+//     void pushfront(int val) {
+//         node* temp = new node(val);
+//         if (size == 0) {
+//             head = tail = temp;
+//         } else {
+//             temp->next = head;
+//             head->prev=temp;
+//             head = temp;
+//         }
+//         size++;
+//     }
+//     // Delete at head function
+// //approach- delete at head : 
+// //                 if size==0--> list is empty
+// //                 if size==1--> head=tail=NULL;size--;
+// //                 if size>=1-->head=head.next;size--;
 
-    // Insert at head function
-    void pushfront(int val) {
-        node* temp = new node(val);
-        if (size == 0) {
-            head = tail = temp;
-        } else {
-            temp->next = head;
-            head->prev=temp;
-            head = temp;
-        }
-        size++;
-    }
-    // Delete at head function
-//approach- delete at head : 
-//                 if size==0--> list is empty
-//                 if size==1--> head=tail=NULL;size--;
-//                 if size>=1-->head=head.next;size--;
+//     void popfront() {
+//         if (size == 0) {
+//             cout << "list is empty" << endl;
+//             return;
+//         } 
+//         head=head->next;
+//         if(head)head->prev=nullptr;
+//         if(head==nullptr)tail=nullptr;  //extra
+//             size--;
+//         }
 
-    void popfront() {
-        if (size == 0) {
-            cout << "list is empty" << endl;
-            return;
-        } 
-        head=head->next;
-        if(head)head->prev=nullptr;
-        if(head==nullptr)tail=nullptr;  //extra
-            size--;
-        }
+//     // Delete at tail function
+//     void popback() {
+//         if (size == 0) {
+//             cout << "list is empty" << endl;
+//             return;
+//         }
+//         else if(size==1){   //extra
+//             popfront();
+//             return;
+//         }
 
-    // Delete at tail function
-    void popback() {
-        if (size == 0) {
-            cout << "list is empty" << endl;
-            return;
-        }
-        else if(size==1){   //extra
-            popfront();
-            return;
-        }
+//         node* temp = tail->prev;
+//         temp->next=nullptr;
+//         tail=temp;
+//         size--;
+//         }
 
-        node* temp = tail->prev;
-        temp->next=nullptr;
-        tail=temp;
-        size--;
-        }
+// int front(){
+//     if(size==0){
+//         cout<<"Queue is empty!"<<endl;
+//         return -1;
+//     }
+//     return head->val;
+// }
 
-int front(){
-    if(size==0){
-        cout<<"Queue is empty!"<<endl;
-        return -1;
-    }
-    return head->val;
-}
+// int back(){
+//     if(size==0){
+//         cout<<"Queue is empty!"<<endl;
+//         return -1;
+//     }
+//     return tail->val;
+// }
 
-int back(){
-    if(size==0){
-        cout<<"Queue is empty!"<<endl;
-        return -1;
-    }
-    return tail->val;
-}
+// bool empty(){
+//     if(size==0)return true;
+//     else return false;
+// }
 
-bool empty(){
-    if(size==0)return true;
-    else return false;
-}
+//     // Display the linked list
+//     void display() {
+//         node* temp = head;
+//         while (temp != NULL) {
+//             cout << temp->val << " ";
+//             temp = temp->next;
+//         }
+//         cout << endl;
+//     }
+// };
 
-    // Display the linked list
-    void display() {
-        node* temp = head;
-        while (temp != NULL) {
-            cout << temp->val << " ";
-            temp = temp->next;
-        }
-        cout << endl;
-    }
-};
-
-int main(){
-  Deque dq;
-  dq.pushback(10);  
-  dq.pushback(20);
-  dq.pushback(30);
-  dq.pushback(40);
-  dq.display();
-  dq.popback();
-  dq.display();
-  dq.popfront();
-  dq.display();
-  dq.pushfront(50);
-  dq.display();
-  cout<<dq.front()<<endl;
-  cout<<dq.back();
-}
+// int main(){
+//   Deque dq;
+//   dq.pushback(10);  
+//   dq.pushback(20);
+//   dq.pushback(30);
+//   dq.pushback(40);
+//   dq.display();
+//   dq.popback();
+//   dq.display();
+//   dq.popfront();
+//   dq.display();
+//   dq.pushfront(50);
+//   dq.display();
+//   cout<<dq.front()<<endl;
+//   cout<<dq.back();
+// }
