@@ -32,6 +32,7 @@
 // return 0;
 // }
 
+//----------------------------------------------------------------------------------------
 
 
 // #include<iostream>
@@ -60,6 +61,7 @@
 
 // }
 
+//----------------------------------------------------------------------------------------
 
 //decontructor
 
@@ -87,6 +89,7 @@
 //     return 0;
 // }
 
+//----------------------------------------------------------------------------------------
 
 
 // //writing a file
@@ -100,6 +103,7 @@
 //     cout<<"data saved\n";
 // }
 
+//----------------------------------------------------------------------------------------
 
 
 //writing and reading a file
@@ -120,6 +124,7 @@
 
 // }
 
+//----------------------------------------------------------------------------------------
 
 
 //apppend mod
@@ -139,6 +144,7 @@
 //     cout<<s;
 // }
 
+//----------------------------------------------------------------------------------------
 
 
 //manipulators of fstream
@@ -166,6 +172,7 @@
 // }
 
 
+//----------------------------------------------------------------------------------------
 
 
 //putting string in file  {input based}
@@ -196,6 +203,7 @@
 //     }
 
 
+//----------------------------------------------------------------------------------------
 
 
 //operator overloading
@@ -228,6 +236,7 @@
 //     return 0;
 // }
 
+//----------------------------------------------------------------------------------------
 
 //binary operator overloading
 
@@ -260,6 +269,7 @@
 //     return 0;
 // }
 
+//----------------------------------------------------------------------------------------
 
 
 //type conversion
@@ -292,53 +302,155 @@
 // }
 
 
+//----------------------------------------------------------------------------------------
+
+
 //order of execution of construction/destruction during single inheritance
 //{default constructor in both classes} [2base class+child]
+// #include<iostream>
+// using namespace std;
+// class A
+// {
+//     public:
+//     A()
+//     {
+//         cout<<"\ncalling default base class constuctor";
+//     }
+//     ~A()
+//     {
+//         cout<<"\ncalling base class destructor";
+//     }
+// };
+
+
+// class C
+// {
+//     public:
+//     C()
+//     {
+//         cout<<"\ncalling default base class constuctor";
+//     }
+//     ~C()
+//     {
+//         cout<<"\ncalling base class destructor";
+//     }
+// };
+
+// class B:public A,public C
+// {
+//     public:
+//     B()
+//     {
+//         cout<<"\ncalling default derived contructor";
+//     }
+//     ~B()
+//     {
+//         cout<<"\ncalling derived class destructor";
+//     }
+// };
+
+// int main(){
+
+//     B obj1;
+
+//    return 0;
+// }
+
+
+//----------------------------------------------------------------------------------------
+
+
+
+//inheritance 
+// #include<iostream>
+// using namespace std;
+// int main(){
+
+// using namespace std;
+// class A
+// {
+//     public:
+//     A()
+//     {
+//         cout<<"\ncalling default base class constuctor";
+//     }
+//     ~A()
+//     {
+//         cout<<"\ncalling base class destructor";
+//     }
+// };
+
+
+// class C
+// {
+//     public:
+//     C()
+//     {
+//         cout<<"\ncalling default base class constuctor";
+//     }
+//     ~C()
+//     {
+//         cout<<"\ncalling base class destructor";
+//     }
+// };
+
+// class B:public A,public C
+// {
+//     public:
+//     B()
+//     {
+//         cout<<"\ncalling default derived contructor";
+//     }
+//     ~B()
+// class C{
+//     cout<<"/ncalling derived class destructor";
+//     int 
+//     }
+//     }
+// };
+
+
+// class D:{
+    
+// }
+
+
+
+//----------------------------------------------------------------------------------------
+//memory allocation failure
+// #include<iostream>
+// #include<stdlib.h>
+
+// using namespace std;
+// int main(){
+//     int *p=NULL;
+//     p=new int;
+//     if(p==NULL){
+//         cout<<"\nmemory allocation failure";
+//         exit(1);
+//     }
+//     return 0;
+// }
+
+
+//----------------------------------------------------------------------------------------
+//program to allocate and delocate one memory location
 #include<iostream>
+#include<stdlib.h>
+
 using namespace std;
-class A
-{
-    public:
-    A()
-    {
-        cout<<"\ncalling default base class constuctor";
-    }
-    ~A()
-    {
-        cout<<"\ncalling base class destructor";
-    }
-};
-
-
-class C
-{
-    public:
-    C()
-    {
-        cout<<"\ncalling default base class constuctor";
-    }
-    ~C()
-    {
-        cout<<"\ncalling base class destructor";
-    }
-};
-
-class B:public A,public C
-{
-    public:
-    B()
-    {
-        cout<<"\ncalling default derived contructor";
-    }
-    ~B()
-    {
-        cout<<"\ncalling derived class destructor";
-    }
-};
-
 int main(){
-
-    B obj1;
-
-   return 0;
+    int *p=NULL;
+    p=new int;
+    if(p==NULL){
+        cout<<"\nMemory allocation failure";
+        exit(1);
+    }
+    else {
+        cout<<"\nMemory allocated\n";
+        *p=12;
+        cout<<"Integer value stored is: "<<*p;
+        delete p;
+        cout<<"\nMemory dellocated";
+    }
 }
