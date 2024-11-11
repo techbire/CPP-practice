@@ -68,6 +68,29 @@ node* search(node* root,int key){
 // }
 
 
+void insert(node* root, int key) {
+    node* prev = nullptr;
+    while (root != nullptr) {
+        prev = root;
+        if (key == root->data) {
+            return;
+        } else if (key < root->data) {
+            root = root->left;
+        } else {
+            root = root->right;
+        }
+    }
+
+    node* newNode = createNode(key);
+    if (key < prev->data) {
+        prev->left = newNode;
+    } else {
+        prev->right = newNode;
+    }
+}
+
+
+
 int main() {
     // Constructing the tree using the createNode function
     node* p = createNode(5);
@@ -104,6 +127,10 @@ int main() {
     else{
         cout<<"element not found!!";
     }
+
+    insert(p,7);
+    cout<<p->right->right->data;  //run hone pe 7 show karega!
+
     return 0;
 
 }
