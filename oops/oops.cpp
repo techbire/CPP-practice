@@ -100,7 +100,7 @@
 //     ofstream of("result.txt");
 //     of<<"hello";
 //     of.close();
-//     cout<<"data saved\n";
+//     cout<<"val saved\n";
 // }
 
 //----------------------------------------------------------------------------------------
@@ -115,7 +115,7 @@
 //     ofstream of("result.txt");
 //     of<<"hello ansh how are you?";
 //     of.close();
-//     cout<<"data saved\n";
+//     cout<<"val saved\n";
 //     ifstream inf("result.txt");
 //     inf>>s;
 //     cout<<s;
@@ -211,18 +211,18 @@
 
 // #include<iostream>
 // using namespace std;
-// class data{
+// class val{
 //     public:
 //     int num1;
-//     data(int n){
+//     val(int n){
 //         num1=n;
 //     }
-//         data operator++();
+//         val operator++();
 //         void display(){
 //             cout<<"value of num1="<<num1;         
 //             } };
             
-//             data data::operator++()
+//             val val::operator++()
 //             {
 //                 num1=++num1;
 //                 return num1;
@@ -230,7 +230,7 @@
 
 
 // int main(){
-//     data d1(10),result(0);
+//     val d1(10),result(0);
 //     result=++d1;
 //     result.display();
 //     return 0;
@@ -242,20 +242,20 @@
 
 // #include<iostream>
 // using namespace std;
-// class data{
+// class val{
 //     public:
 //     int num1;
-//     data(int n){
+//     val(int n){
 //         num1=n;
 //     }
-//         data operator+(data d2);
+//         val operator+(val d2);
 //         void display(){
 //             cout<<"value of num1="<<num1;         
 //             } };
             
-//             data data::operator+(data d2)
+//             val val::operator+(val d2)
 //             {
-//                 data d3(0);
+//                 val d3(0);
 //                 d3.num1=num1+d2.num1;
 //                 return d3;
 
@@ -263,7 +263,7 @@
 
 
 // int main(){
-//     data d1(10),d2(20),result(0);   //10+20
+//     val d1(10),d2(20),result(0);   //10+20
 //     result=d1+d2;
 //     result.display();
 //     return 0;
@@ -288,7 +288,7 @@
 //         m=t%60;
 //     }
 
-// void show_data(){
+// void show_val(){
 //     cout<<h<<"hrs"<<m<<"mins";
 // }
 // };
@@ -298,7 +298,7 @@
 //     cin>>min;
 //     time t1;
 //     t1=min;
-//     t1.show_data();
+//     t1.show_val();
 // }
 
 

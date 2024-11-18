@@ -371,7 +371,7 @@ using namespace std;
 
 
 // struct Node {
-//     int data;
+//     int val;
 //     Node *next;
 // };
 
@@ -386,7 +386,7 @@ using namespace std;
 
 //     void push(int val) {
 //         Node *newNode = new Node;
-//         newNode->data = val;
+//         newNode->val = val;
 //         newNode->next = top;
 //         top = newNode;
 //     }
@@ -396,7 +396,7 @@ using namespace std;
 //             cout << "Stack underflow" << endl;
 //             return -1;  // Return a special value to indicate underflow
 //         } else {
-//             int poppedValue = top->data;
+//             int poppedValue = top->val;
 //             Node *temp = top;
 //             top = top->next;
 //             delete temp;
@@ -411,7 +411,7 @@ using namespace std;
 //             Node *ptr = top;
 //             cout << "Stack elements: ";
 //             while (ptr != NULL) {
-//                 cout << ptr->data << " ";
+//                 cout << ptr->val << " ";
 //                 ptr = ptr->next;
 //             }
 //             cout << endl;

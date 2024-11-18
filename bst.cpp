@@ -2,16 +2,16 @@
 using namespace std;
 
 struct node {
-    int data;
+    int val;
     struct node* left;
     struct node* right;
 };
 
 //Create Node
 
-node* createNode(int data) {
+node* createNode(int val) {
     node* n = new node(); 
-    n->data = data;
+    n->val = val;
     n->left = NULL; 
     n->right = NULL;
     return n; 
@@ -24,7 +24,7 @@ bool isBST(node* root) {
         if (!isBST(root->left)) {
             return false;
         }
-        if (prev != NULL && root->data <= prev->data) {
+        if (prev != NULL && root->val <= prev->val) {
             return false;
         }
         prev = root;
@@ -37,10 +37,10 @@ bool isBST(node* root) {
 //{searching} Checking if element of binary tree is present or not!
 node* search(node* root,int key){
     if(root==nullptr)return nullptr;
-    if(key==root->data){
+    if(key==root->val){
         return root;
     }
-    else if(key<root->data){
+    else if(key<root->val){
         return search(root->left,key);
     }
     else{
@@ -51,8 +51,8 @@ node* search(node* root,int key){
 // // searching {iteration method}
 // node* search(node* root,int key){
 //     while(root!=nullptr){
-//         if(key==root->data)return root;
-//         else if(key<root->data){
+//         if(key==root->val)return root;
+//         else if(key<root->val){
 //             root=root->left;
 //         }
 //         else{
@@ -67,9 +67,9 @@ void insert(node* root, int key) {
     node* prev = nullptr;
     while (root != nullptr) {
         prev = root;
-        if (key == root->data) {
+        if (key == root->val) {
             return;
-        } else if (key < root->data) {
+        } else if (key < root->val) {
             root = root->left;
         } else {
             root = root->right;
@@ -77,19 +77,64 @@ void insert(node* root, int key) {
     }
 
     node* newNode = createNode(key);
-    if (key < prev->data) {
+    if (key < prev->val) {
         prev->left = newNode;
     } else {
         prev->right = newNode;
     }
 }
 
-struct node *deletenode(struct node *root, int value){
-    if(value<root->data){
-        deletenode(root->left,value);
-        else
+
+node* findMin(node* root) {
+    while (root->left != nullptr) {
+        root = root->left;
     }
+    return root;
 }
+
+node* deleteNode(node* root, int key) {
+    if (root == nullptr) {
+        return root;  // If the tree is empty, return null
+    }
+
+    if (key < root->val) {
+        root->left = deleteNode(root->left, key);  // Go to the left subtree
+    } else if (key > root->val) {
+        root->right = deleteNode(root->right, key);  // Go to the right subtree
+    } else {
+        // Node with the key found
+
+        // Case 1: Node with only one child or no child
+        if (root->left == nullptr) {
+            node* temp = root->right;
+            delete root;
+            return temp;
+        } else if (root->right == nullptr) {
+            node* temp = root->left;
+            delete root;
+            return temp;
+        }
+
+        // Case 2: Node with two children
+        node* temp = findMin(root->right);  // Find the in-order successor
+
+        root->val = temp->val;  // Replace val of the node with the successor's val
+
+        root->right = deleteNode(root->right, temp->val);  // Delete the successor
+    }
+
+    return root;
+}
+
+
+//Display ka code binary trees se
+void displayTree(node* root) {
+    if (root == nullptr) return;
+    cout << root->val << " ";
+    displayTree(root->left);
+    displayTree(root->right);
+}
+
 
 
 int main() {
@@ -113,6 +158,11 @@ int main() {
     p1->left = p3;
     p1->right = p4;
 
+
+
+    displayTree(p);
+    printf("\n");
+
     // Check if the tree is a BST
     if (isBST(p)) {
         cout << "This is a BST" << endl;
@@ -124,13 +174,19 @@ int main() {
     node* n=search(p,6);
 
     if (n != nullptr) {
-        cout << "found " << n->data << endl;
+        cout << "found " << n->val << endl;
     } else {
         cout << "element not found!!" << endl;
     }
 
+    // Insertion 
     insert(p,7);
-    cout<<p->right->right->data;  //run hone pe 7 show karega!
+    cout<<p->right->right->val;  //run hone pe 7 show karega!
+
+    // Deletion
+    deleteNode(p,3);
+    printf("\n");
+    displayTree(p);
 
     return 0;
 

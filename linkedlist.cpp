@@ -405,12 +405,12 @@ using namespace std;
 
 // Define the structure for a Node
 struct Node {
-    int data;
+    int val;
     Node* next;
 
-    // Constructor to initialize the node with data
+    // Constructor to initialize the node with val
     Node(int x) {
-        data = x;
+        val = x;
         next = nullptr;
     }
 };
@@ -466,7 +466,7 @@ void display(Node* head) {
 
     Node* temp = head;
     do {
-        cout << temp->data << " -> ";
+        cout << temp->val << " -> ";
         temp = temp->next;
     } while (temp != head);
     cout << "(back to head)" << endl; // Indicate circularity
