@@ -456,27 +456,64 @@
 // }
 
 //----------------------------------------------------------------------------------------
-//program using throw outside of try block
+// //program using throw outside of try block
+// #include<iostream>
+// using namespace std;
+// void divide(int x,int y,int z){
+//     cout<<"we are inside the function";
+//     if((x-y)!=0){
+//         int r=z/(x-y);
+//         cout<<"result: "<<r;
+//     }
+//     else{
+//         throw(x-y);
+//     }
+// }
+// int main(){
+//     try{
+//         cout<<"we are inside the try block";
+//         divide(10,20,30);
+//         divide(10,10,20);
+//        }
+//        catch(int i){
+//         cout<<"caught the exception";
+//        }
+//        return 0;
+// }
+
+//----------------------------------------------------------------------------------------
+//program multiple catch statment
 #include<iostream>
 using namespace std;
-void divide(int x,int y,int z){
-    cout<<"we are inside the function";
-    if((x-y)!=0){
-        int r=z/(x-y);
-        cout<<"result: "<<r;
-    }
-    else{
-        throw(x-y);
-    }
-}
-int main(){
+void Test(int x){
     try{
-        cout<<"we are inside the try block";
-        divide(10,20,30);
-        divide(10,10,20);
-       }
-       catch(int i){
-        cout<<"caught the exception";
-       }
-       return 0;
+        if(x==1)throw x;  //int
+        else if(x==0)throw 'x';  //char
+        else if(x==-1)throw 1.0; //double
+        cout<<"end of try block";
+    }
+    catch(char c){  //catch 1
+    cout<<"caught a character "; 
+    }
+    catch(int m){
+        cout<<"caught an integer ";
+    }
+    catch(double d){
+        cout<<"caught a double ";
+    }
+    cout<<"end of try-catch system ";
 }
+
+int main(){
+    cout<<"testing multiple catches ";
+    cout<<"x==-1";
+    Test(-1);
+    cout<<"x==0";
+    Test(0);
+    cout<<"x==1";
+    Test(1);
+    cout<<"x==2";
+    Test(2);    //doesnt throw any exception
+    return 0;
+}
+
