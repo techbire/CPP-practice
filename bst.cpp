@@ -18,24 +18,19 @@ node* createNode(int data) {
 }
 
 // Checking if a binary tree is a binary search tree or not!
-int isBST(node* root) {
-    static node* prev = NULL; // Static variable to track the previous node
+bool isBST(node* root) {
+    static node* prev = NULL;
     if (root != NULL) {
-        // Check the left subtree
         if (!isBST(root->left)) {
-            return 0;
+            return false;
         }
-        // Check the current node's value against the previous node's value
         if (prev != NULL && root->data <= prev->data) {
-            return 0; // If the current node is not greater than the previous, return false
+            return false;
         }
-        prev = root; // Update the previous node
-
-        // Check the right subtree
+        prev = root;
         return isBST(root->right);
-    } else {
-        return 1; // If the node is NULL, it's a valid BST
     }
+    return true;
 }
 
 
@@ -89,6 +84,12 @@ void insert(node* root, int key) {
     }
 }
 
+struct node *deletenode(struct node *root, int value){
+    if(value<root->data){
+        deletenode(root->left,value);
+        else
+    }
+}
 
 
 int main() {
@@ -120,12 +121,12 @@ int main() {
     }
 
     // Check if the element is found or not
-   node* n=search(p,6);
-    if(n!=nullptr){
-        cout<<"found",n->data;
-    }
-    else{
-        cout<<"element not found!!";
+    node* n=search(p,6);
+
+    if (n != nullptr) {
+        cout << "found " << n->data << endl;
+    } else {
+        cout << "element not found!!" << endl;
     }
 
     insert(p,7);
