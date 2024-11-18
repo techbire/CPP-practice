@@ -435,22 +435,48 @@
 
 //----------------------------------------------------------------------------------------
 //program to allocate and delocate one memory location
-#include<iostream>
-#include<stdlib.h>
+// #include<iostream>
+// #include<stdlib.h>
 
+// using namespace std;
+// int main(){
+//     int *p=NULL;
+//     p=new int;
+//     if(p==NULL){
+//         cout<<"\nMemory allocation failure";
+//         exit(1);
+//     }
+//     else {
+//         cout<<"\nMemory allocated\n";
+//         *p=12;
+//         cout<<"Integer value stored is: "<<*p;
+//         delete p;
+//         cout<<"\nMemory dellocated";
+//     }
+// }
+
+//----------------------------------------------------------------------------------------
+//program using throw outside of try block
+#include<iostream>
 using namespace std;
+void divide(int x,int y,int z){
+    cout<<"we are inside the function";
+    if((x-y)!=0){
+        int r=z/(x-y);
+        cout<<"result: "<<r;
+    }
+    else{
+        throw(x-y);
+    }
+}
 int main(){
-    int *p=NULL;
-    p=new int;
-    if(p==NULL){
-        cout<<"\nMemory allocation failure";
-        exit(1);
-    }
-    else {
-        cout<<"\nMemory allocated\n";
-        *p=12;
-        cout<<"Integer value stored is: "<<*p;
-        delete p;
-        cout<<"\nMemory dellocated";
-    }
+    try{
+        cout<<"we are inside the try block";
+        divide(10,20,30);
+        divide(10,10,20);
+       }
+       catch(int i){
+        cout<<"caught the exception";
+       }
+       return 0;
 }
