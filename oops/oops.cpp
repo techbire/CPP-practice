@@ -482,38 +482,86 @@
 // }
 
 //----------------------------------------------------------------------------------------
-//program multiple catch statment
+// //program multiple catch statment
+// #include<iostream>
+// using namespace std;
+// void Test(int x){
+//     try{
+//         if(x==1)throw x;  //int
+//         else if(x==0)throw 'x';  //char
+//         else if(x==-1)throw 1.0; //double
+//         cout<<"end of try block";
+//     }
+//     catch(char c){  //catch 1
+//     cout<<"caught a character "; 
+//     }
+//     catch(int m){
+//         cout<<"caught an integer ";
+//     }
+//     catch(double d){
+//         cout<<"caught a double ";
+//     }
+//     cout<<"end of try-catch system ";
+// }
+
+// int main(){
+//     cout<<"testing multiple catches ";
+//     cout<<"x==1";
+//     Test(1);
+//     cout<<"x==0";
+//     Test(0);
+//     cout<<"x==-1";
+//     Test(-1);
+//     cout<<"x==2";
+//     Test(2);    //doesnt throw any exception
+//     return 0;
+// }
+
+
+//----------------------------------------------------------------------------------------
+//program catch all exception
+
 #include<iostream>
 using namespace std;
 void Test(int x){
     try{
-        if(x==1)throw x;  //int
-        else if(x==0)throw 'x';  //char
-        else if(x==-1)throw 1.0; //double
-        cout<<"end of try block";
+        if(x==0)throw x;  //int
+        if(x==-1)throw 'x';  //char
+        if(x==1)throw 1.0; //float
     }
-    catch(char c){  //catch 1
-    cout<<"caught a character "; 
+    catch(...)  //catch all
+    {
+        cout<<"caught an exception ";
     }
-    catch(int m){
-        cout<<"caught an integer ";
-    }
-    catch(double d){
-        cout<<"caught a double ";
-    }
-    cout<<"end of try-catch system ";
 }
 
 int main(){
-    cout<<"testing multiple catches ";
-    cout<<"x==-1";
+    cout<<"testing genric catch ";
     Test(-1);
-    cout<<"x==0";
     Test(0);
-    cout<<"x==1";
     Test(1);
-    cout<<"x==2";
-    Test(2);    //doesnt throw any exception
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
