@@ -519,32 +519,47 @@
 
 
 //----------------------------------------------------------------------------------------
-//program catch all exception
+// //program catch all exception
 
+// #include<iostream>
+// using namespace std;
+// void Test(int x){
+//     try{
+//         if(x==0)throw x;  //int
+//         if(x==-1)throw 'x';  //char
+//         if(x==1)throw 1.0; //float
+//     }
+//     catch(...)  //catch all
+//     {
+//         cout<<"caught an exception ";
+//     }
+// }
+
+// int main(){
+//     cout<<"testing genric catch ";
+//     Test(-1);
+//     Test(0);
+//     Test(1);
+//     return 0;
+// }
+
+//----------------------------------------------------------------------------------------
+//program to calculate area of square using function template
 #include<iostream>
 using namespace std;
-void Test(int x){
-    try{
-        if(x==0)throw x;  //int
-        if(x==-1)throw 'x';  //char
-        if(x==1)throw 1.0; //float
-    }
-    catch(...)  //catch all
-    {
-        cout<<"caught an exception ";
-    }
+template<class t>
+t square(t num){
+    return num*num;
 }
-
 int main(){
-    cout<<"testing genric catch ";
-    Test(-1);
-    Test(0);
-    Test(1);
+    int num1=3;
+    cout<<"\n square of "<<num1<<"="<<square<int>(num1);
+    float num2=5.6;
+    cout<<"\n square of "<<num2<<"="<<square<float>(num2);
+    double num3=123.456;
+    cout<<"\n square of "<<num3<<"="<<square<double>(num3);
     return 0;
 }
-
-
-
 
 
 
