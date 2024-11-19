@@ -562,7 +562,7 @@
 // }
 
 //----------------------------------------------------------------------------------------
-//program to display minimum of two numbers using function template
+// //program to display minimum of two numbers using function template
 #include<iostream>
 using namespace std;
 template<class t>
@@ -581,6 +581,7 @@ cout<<"\nmin of float value: "<<min1<float>(p,q);
 return 0;
 }
 
+//----------------------------------------------------------------------------------------
 
 
 
