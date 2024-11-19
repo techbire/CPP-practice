@@ -306,7 +306,7 @@
 
 
 //order of execution of construction/destruction during single inheritance
-//{default constructor in both classes} [2base class+child]
+//{ default constructor in both classes } [ 2base class + child ]
 // #include<iostream>
 // using namespace std;
 // class A
@@ -544,21 +544,41 @@
 // }
 
 //----------------------------------------------------------------------------------------
-//program to calculate area of square using function template
+// //program to calculate area of square using function template
+// #include<iostream>
+// using namespace std;
+// template<class t>
+// t square(t num){
+//     return num*num;
+// }
+// int main(){
+//     int num1=3;
+//     cout<<"\n square of "<<num1<<" = "<<square<int>(num1);
+//     float num2=5.6;
+//     cout<<"\n square of "<<num2<<" = "<<square<float>(num2);
+//     double num3=123.456;
+//     cout<<"\n square of "<<num3<<" = "<<square<double>(num3);
+//     return 0;
+// }
+
+//----------------------------------------------------------------------------------------
+//program to display minimum of two numbers using function template
 #include<iostream>
 using namespace std;
 template<class t>
-t square(t num){
-    return num*num;
+t min1(t a,t b){
+    return (a<b?a:b);
 }
 int main(){
-    int num1=3;
-    cout<<"\n square of "<<num1<<"="<<square<int>(num1);
-    float num2=5.6;
-    cout<<"\n square of "<<num2<<"="<<square<float>(num2);
-    double num3=123.456;
-    cout<<"\n square of "<<num3<<"="<<square<double>(num3);
-    return 0;
+int x,y;
+float p,q;
+cout<<"enter integer value: ";
+cin>>x>>y;
+cout<<"enter float value: ";
+cin>>p>>q;
+cout<<"\nmin of integer: "<<min1<int>(x,y);
+cout<<"\nmin of float value: "<<min1<float>(p,q);
+return 0;
 }
 
 
