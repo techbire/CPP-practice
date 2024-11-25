@@ -563,23 +563,23 @@
 
 //----------------------------------------------------------------------------------------
 // //program to display minimum of two numbers using function template
-#include<iostream>
-using namespace std;
-template<class t>
-t min1(t a,t b){
-    return (a<b?a:b);
-}
-int main(){
-int x,y;
-float p,q;
-cout<<"enter integer value: ";
-cin>>x>>y;
-cout<<"enter float value: ";
-cin>>p>>q;
-cout<<"\nmin of integer: "<<min1<int>(x,y);
-cout<<"\nmin of float value: "<<min1<float>(p,q);
-return 0;
-}
+// #include<iostream>
+// using namespace std;
+// template<class t>
+// t min1(t a,t b){
+//     return (a<b?a:b);
+// }
+// int main(){
+// int x,y;
+// float p,q;
+// cout<<"enter integer value: ";
+// cin>>x>>y;
+// cout<<"enter float value: ";
+// cin>>p>>q;
+// cout<<"\nmin of integer: "<<min1<int>(x,y);
+// cout<<"\nmin of float value: "<<min1<float>(p,q);
+// return 0;
+// }
 
 //----------------------------------------------------------------------------------------
 
