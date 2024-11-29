@@ -1,5 +1,8 @@
-#include<iostream>
-using namespace std;
+// #include<iostream>
+// using namespace std;
+// //code-1 insertion,deletion
+
+
 // class maxheap{
 //     int *arr;
 //     int size;  //total elements in heap
@@ -91,6 +94,7 @@ using namespace std;
 #include<iostream>
 using namespace std;
 
+
 void heapify(int arr[],int index,int n){
     int largest=index;
     int left=2*index+1;
@@ -112,11 +116,18 @@ void printheap(int arr[],int n){
         cout<<arr[i]<<" ";
     }
     cout<<endl;
+} 
+
+void sortarray(int arr[],int n){
+    for(int i=n-1;i>0;i--){
+        swap(arr[i],arr[0]);
+        heapify(arr,0,i);
+    }
 }
 
 void buildmaxheap(int arr[],int n){
     //step down
-    for(int i=n/2-i;i>=0;i--){
+    for(int i=n/2-1;i>=0;i--){
         heapify(arr,i,n);
     }
 }
@@ -124,5 +135,7 @@ void buildmaxheap(int arr[],int n){
 int main(){
     int arr[]={10,3,8,9,5,13,18,14,11,70};
     buildmaxheap(arr,10);
+    printheap(arr,10);
+    sortarray(arr,10);
     printheap(arr,10);
 }
