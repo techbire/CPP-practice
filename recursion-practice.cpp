@@ -20,8 +20,9 @@ using namespace std;
 //     }
 // }
 
-// //recursion approach
 
+
+// //recursion approach
 
 // void print(int x, int n){
 //     if(x>=n){
@@ -38,6 +39,15 @@ using namespace std;
 //     cin >> n;
 //     print(1,n);
 // }
+
+
+
+
+
+
+//----------------------------------------------------------------------------------------
+
+
 
 // //Write a program to print the sum of all odd numbers from a to b (inclusive) using recursion
 
@@ -57,3 +67,122 @@ using namespace std;
 //     cin>>b;
 //     print(a,b);
 // }
+
+
+
+
+// //----------------------------------------------------------------------------------------
+
+// //sum of array
+// int sum(int *arr,int size){
+//     //base case
+//     if(size==0)return 0;
+//     if(size==1)return arr[0];
+
+//     int rem=sum(arr+1,size-1);
+//     int sum=arr[0]+rem;
+//     return sum;
+
+// }
+
+
+// int main(){
+//     int arr[5]={2,3,4,5,6};
+//     int size=5;
+//     int n=sum(arr,size);
+//     cout<<"sum is: "<<n;
+//     }
+
+
+//----------------------------------------------------------------------------------------
+
+//issorted array
+// bool issorted(int *arr,int size){
+//     //base case
+//     if(size==0||size==1){
+//         return true;
+//     }
+
+//     if(arr[0]>arr[1]){
+//         return false;
+//     }
+//     else{
+//         bool rem=issorted(arr+1,size-1);
+//         return rem;
+//     }
+
+
+// }
+
+
+// int main(){
+//     int arr[5]={2,3,4,5,6};
+//     int size=5;
+
+//     bool ans=issorted(arr,size);
+//     if(ans){
+//         cout<<"array is sorted";
+//     }
+//     else{
+//         cout<<"array is not sorted";
+//     }
+// }
+
+
+
+
+
+// //----------------------------------------------------------------------------------------
+
+// //linear search 
+// bool linearsearch(int *arr,int size,int key){
+//     //base case
+//     if(size==0)return false;
+//     if(size==1)return true;
+
+//     return linearsearch(arr+1,size-1,key);
+
+// }
+
+
+// int main(){
+//     int arr[5]={2,3,4,5,6};
+//     int size=5;
+//     int key=2;
+//     bool ans=linearsearch(arr,size,key);
+//     if(ans){
+//         cout<<"present"<<endl;
+//     }
+//     else{
+//         cout<<"absent"<<endl;
+//     }
+//     }
+
+
+
+
+
+//----------------------------------------------------------------------------------------
+
+//binary search 
+bool binarysearch(int *arr,int s,int e,int k){
+    //base case
+    if(s>e)return false;
+    int mid=s+(e-s)/2;
+    if(arr[mid]==k)return true;
+    if(arr[mid]<k){
+        return binarysearch(arr,mid+1,e,k);
+    }
+    else{
+        return binarysearch(arr,s,mid-1,k);
+    }
+}
+
+
+int main(){
+    int arr[5]={2,3,4,5,6};
+    int size=5;
+    int key=2;
+    cout<<"present or not: "<<binarysearch(arr,0,size-1,key);
+    
+    }
