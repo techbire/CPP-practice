@@ -164,25 +164,72 @@ using namespace std;
 
 //----------------------------------------------------------------------------------------
 
-//binary search 
-bool binarysearch(int *arr,int s,int e,int k){
-    //base case
-    if(s>e)return false;
-    int mid=s+(e-s)/2;
-    if(arr[mid]==k)return true;
-    if(arr[mid]<k){
-        return binarysearch(arr,mid+1,e,k);
-    }
-    else{
-        return binarysearch(arr,s,mid-1,k);
-    }
-}
+// //binary search 
+// bool binarysearch(int *arr,int s,int e,int k){
+//     //base case
+//     if(s>e)return false;
+//     int mid=s+(e-s)/2;
+//     if(arr[mid]==k)return true;
+//     if(arr[mid]<k){
+//         return binarysearch(arr,mid+1,e,k);
+//     }
+//     else{
+//         return binarysearch(arr,s,mid-1,k);
+//     }
+// }
 
 
-int main(){
-    int arr[5]={2,3,4,5,6};
-    int size=5;
-    int key=2;
-    cout<<"present or not: "<<binarysearch(arr,0,size-1,key);
+// int main(){
+//     int arr[5]={2,3,4,5,6};
+//     int size=5;
+//     int key=2;
+//     cout<<"present or not: "<<binarysearch(arr,0,size-1,key);
     
+//     }
+
+
+//----------------------------------------------------------------------------------------
+// int power(int a,int b){
+//     //base case
+//     if(b==0)return 1;
+//     if(b==1)return a;
+//     //recursive call
+//     int ans=power(a,b/2);
+//     //if b is even
+//     if(b%2==0)return ans*ans;
+//     else return a*ans*ans;
+// }
+
+// int main(){
+//     int a,b;
+//     cin>>a>>b;
+//     cout<<endl;
+//     int ans=power(a,b);
+//     cout<<ans;
+// }
+
+
+//----------------------------------------------------------------------------------------
+void sortArray(int *arr, int n) {
+    // Base case: If the array has only one element, it's already sorted
+    if (n <= 1)
+        return;
+    // Moving the largest element to the end
+    for (int i = 0; i < n - 1; i++) {
+        if (arr[i] > arr[i + 1]) {
+            swap(arr[i], arr[i + 1]);
+        }
     }
+    // Recursive call for the rest of the array
+    sortArray(arr, n - 1);
+}
+int main() {
+    int arr[5] = {5, 2, 8, 1, 3};  // Example input
+    sortArray(arr, 5);
+    // Printing the sorted array
+    for (int i = 0; i < 5; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+    return 0;
+}
