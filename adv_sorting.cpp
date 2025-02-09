@@ -1,112 +1,105 @@
 //Merge Sort
 //tc: nlogn
 
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
-// int main() {
-//     int a[] = {9, 3, 7, 6, 2, 8, 1, 5};
-//     int n = sizeof(a) / sizeof(a[0]); 
 
-//     // Temporary array for merging
-//     int temp[n];
 
-//     // Iterative Merge Sort using bottom-up approach
-//     for (int sz = 1; sz < n; sz *= 2) {  // sz is the size of subarrays
-//         for (int l = 0; l < n - sz; l += 2 * sz) {  // l is the starting point of subarray
-//             int mid = l + sz - 1;  // Mid point for dividing the array
-//             int r = min(l + 2 * sz - 1, n - 1);  // Right boundary of the subarray
-
-//             // Merge two sorted subarrays a[l...mid] and a[mid+1...r]
-//             int i = l, j = mid + 1, k = l;  // i for left, j for right, k for temp
-
-//             // Dono subarrays ko merge kar rahe hain
-//             while (i <= mid && j <= r) {
-//                 if (a[i] <= a[j])
-//                     temp[k++] = a[i++];  // Left array se element copy kar rahe hain
-//                 else
-//                     temp[k++] = a[j++];  // Right array se element copy kar rahe hain
-//             }
-
-//             // Agar left side ka kuch bacha hai, usko copy kar rahe hain
-//             while (i <= mid)
-//                 temp[k++] = a[i++];
-
-//             // Agar right side ka kuch bacha hai, usko copy kar rahe hain
-//             while (j <= r)
-//                 temp[k++] = a[j++];
-
-//             // Merge hone ke baad temp array se a[] mein copy kar rahe hain
-//             for (int i = l; i <= r; i++)
-//                 a[i] = temp[i];
+// void merge(vector<int>&a,vector<int>&b,vector<int>&res){
+//     int i=0,j=0,k=0;
+//     while(i<a.size()&&j<b.size()){
+//         if(a[i]<b[j]){
+//             res[k++]=a[i++];
+//         }
+//         else{
+//             res[k++]=b[j++];
 //         }
 //     }
-
-//     // Sorted array ko print karte hain
-//     for (int i = 0; i < n; i++)
-//         cout << a[i] << " ";
-//     cout << endl;
-
-//     return 0;
+//     if(i==a.size()){
+//         while(j<b.size()){
+//             res[k++]=b[j++];
+//         }
+//     }
+//     if(j==b.size()){
+//         while(i<a.size()){
+//             res[k++]=a[i++];
+//         }
+//     }
 // }
+
+// void mergeSort(vector<int>&v){
+//     int n=v.size();
+//     if(n==1)return;
+//     int n1=n/2,n2=n-n/2;
+//     vector<int>a(n1),b(n2);
+//     //copy pasting
+//     for(int i=0;i<n1;i++){
+//         a[i]=v[i];
+//     }
+//     for(int i=0;i<n2;i++){
+//         b[i]=v[i+n1];
+//     }
+//     //recursion
+//     mergeSort(a);
+//     mergeSort(b);
+//     //merge
+//     merge(a,b,v);
+//     }
+
+
+
+
+ 
+// int main(){
+//     int arr[]={4,5,2,3,9,0};
+//     int n=sizeof(arr)/sizeof(arr[0]);
+//     vector<int>v(arr,arr+n);
+//     for(int i=0;i<v.size();i++){
+//         cout<<v[i]<<" ";
+//     }
+//     cout<<endl;
+//     mergeSort(v);
+// }
+
+
 
 //----------------------------------------------------------------------------------------
 
 //Quick Sort
 //tc: nlogn
 
-int main() {
-    int a[] = {9, 3, 7, 6, 2, 8, 1, 5};
-    int n = sizeof(a) / sizeof(a[0]);  // Array ka size nikal rahe hain
+int partition(vector<int>&arr,int st,int end){
+    int index=st-1,pivt=arr[end];
+    for(int j=st;j<end;j++){
+        if(arr[j]<=pivt){
+            index++;
+            swap(arr[j],arr[index]);
 
-    // Stack mein manually sort kar rahe hain partitioning ke saath
-    int stack[n];  // Sorting karne ke liye ek stack banate hain
-    int top = -1;
-
-    // Shuru mein poora array stack mein daal do
-    stack[++top] = 0;
-    stack[++top] = n - 1;
-
-    // Jab tak stack empty nahi hota, sort karte jao
-    while (top >= 0) {
-        int h = stack[top--];  // High (last element)
-        int l = stack[top--];  // Low (first element)
-
-        // Pivot element le rahe hain, generally last wala element hota hai
-        int pivot = a[h];  
-        int i = l - 1;  // i ko -1 pe set kar rahe hain
-
-        // Partition process
-        for (int j = l; j < h; j++) {
-            if (a[j] <= pivot) {
-                i++;
-                swap(a[i], a[j]);  // i aur j ke elements ko swap kar rahe hain
-            }
-        }
-        swap(a[i + 1], a[h]);  // Pivot ko correct position pe set kar rahe hain
-        int p = i + 1;  // New partition point
-
-        // Agar left side partition bacha hai toh usko stack mein daalo
-        if (p - 1 > l) {
-            stack[++top] = l;
-            stack[++top] = p - 1;
-        }
-
-        // Agar right side partition bacha hai toh usko stack mein daalo
-        if (p + 1 < h) {
-            stack[++top] = p + 1;
-            stack[++top] = h;
         }
     }
-
-    // Sorted array ko print karte hain
-    for (int i = 0; i < n; i++)
-        cout << a[i] << " ";
-    cout << endl;
-
-
-    return 0;
+    index++;
+    swap(arr[end],arr[index]);
+    return index;
 }
+void quicksort(vector<int>&arr,int st,int end){
+    if(st<end){
+        int pivtindex=partition(arr,st,end);
+        quicksort(arr,st,pivtindex-1); //left half
+        quicksort(arr,pivtindex+1,end); //right half
+    }
+}
+
+int main(){
+    vector<int> arr={23,43,24,53,26,38};
+    quicksort(arr,0,arr.size()-1);
+    for(int val:arr){
+        cout<<val<<" ";
+    }
+    cout<<endl;
+}
+
+
 
 
 //----------------------------------------------------------------------------------------
