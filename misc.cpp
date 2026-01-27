@@ -1,3 +1,6 @@
+#include <bits/stdc++.h>
+using namespace std;
+
 // // Sample test cases :
 
 // // Input 1 :
@@ -14,11 +17,6 @@
 
 
 //method - vector
-
-// #include <iostream>
-// #include <vector>
-// #include <string>
-// using namespace std;
 
 // int main() {
 //     int n;
@@ -55,10 +53,6 @@
 
 
 // //method - array
-
-// #include <iostream>
-// #include <string>
-// using namespace std;
 
 // int main() {
 //     int n;
@@ -108,13 +102,6 @@
 
 //method - vector
 
-// #include <iostream>
-// #include <vector>
-// #include <algorithm>
-// #include <sstream>
-
-// using namespace std;
-
 // int main() {
 //     string input;
 //     vector<int> nums;
@@ -159,3 +146,61 @@
 
 //     return 0;
 // }
+
+
+//-----------------------------------------------------------------------------------------------------------------
+//you are given an array of length n, you have to find the minimum in every k-size window
+
+//bruteforce
+
+// int main(){
+//     int n;
+//     cin>>n;
+//     int arr[n];
+//     for(int i=0;i<n;i++){
+//         cin>>arr[i];
+//     }
+//     int k;
+//     cin>>k;
+
+// for(int i = 0; i + k <= n; i++) {
+//     int mn = INT_MAX;
+//     for(int j = i; j < i + k; j++) {
+//         mn = min(mn, arr[j]);
+//     }
+//     cout << mn << " ";
+// }
+// }
+
+//Optimal Idea (Sliding Window + Deque)
+
+int main(){
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    int k;
+    cin>>k;   
+deque<int> dq;
+
+for(int i = 0; i < n; i++) {
+
+    // out of window remove
+    if(!dq.empty() && dq.front() <= i - k)
+        dq.pop_front();
+
+    // remove bigger elements
+    while(!dq.empty() && arr[dq.back()] >= arr[i])
+        dq.pop_back();
+
+    dq.push_back(i);
+
+    // window ready
+    if(i >= k - 1)
+        cout << arr[dq.front()] << " ";
+}
+
+
+}

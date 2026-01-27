@@ -338,3 +338,52 @@ using namespace std;
 //   cout<<dq.front()<<endl;
 //   cout<<dq.back();
 // }
+
+
+
+
+//-----------------------------------------------------------------
+//priority_Queue
+
+
+// int main(){
+//     priority_queue<int>p;   //max heap
+//     p.push(10);
+//     p.push(20);
+//     p.push(30);
+//     p.push(40);
+//     p.push(50);
+//     cout<<p.top()<<" ";
+//     //delete
+//     p.pop();
+//     cout<<p.top()<<" ";
+//     //size
+//     cout<<p.size()<<endl;
+//     while(!p.empty()){
+//         cout<<p.top()<<" ";
+//         p.pop();
+
+//     }
+// }
+
+
+
+int main(){
+priority_queue<int,vector<int>,greater<int>>p;    //min heap
+    p.push(10);
+    p.push(20);
+    p.push(30);
+    p.push(40);
+    p.push(50);
+    cout<<p.top()<<" ";
+    //delete
+    p.pop();
+    cout<<p.top()<<" ";
+    //size
+    cout<<p.size()<<endl;
+    while(!p.empty()){
+        cout<<p.top()<<" ";
+        p.pop();
+
+    }
+}

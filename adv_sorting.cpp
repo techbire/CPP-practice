@@ -129,37 +129,59 @@ using namespace std;
 //Quick Sort
 //tc: nlogn
 
-int partition(vector<int>&arr,int st,int end){
-    int index=st-1,pivt=arr[end];
-    for(int j=st;j<end;j++){
-        if(arr[j]<=pivt){
-            index++;
-            swap(arr[j],arr[index]);
+// int partition(vector<int>&arr,int st,int end){
+//     int index=st-1,pivt=arr[end];
+//     for(int j=st;j<end;j++){
+//         if(arr[j]<=pivt){
+//             index++;
+//             swap(arr[j],arr[index]);
 
-        }
-    }
-    index++;
-    swap(arr[end],arr[index]);
-    return index;
-}
-void quicksort(vector<int>&arr,int st,int end){
-    if(st<end){
-        int pivtindex=partition(arr,st,end);
-        quicksort(arr,st,pivtindex-1); //left half
-        quicksort(arr,pivtindex+1,end); //right half
-    }
-}
+//         }
+//     }
+//     index++;
+//     swap(arr[end],arr[index]);
+//     return index;
+// }
+// void quicksort(vector<int>&arr,int st,int end){
+//     if(st<end){
+//         int pivtindex=partition(arr,st,end);
+//         quicksort(arr,st,pivtindex-1); //left half
+//         quicksort(arr,pivtindex+1,end); //right half
+//     }
+// }
 
-int main(){
-    vector<int> arr={23,43,24,53,26,38};
-    quicksort(arr,0,arr.size()-1);
-    for(int val:arr){
-        cout<<val<<" ";
-    }
-    cout<<endl;
-}
+// int main(){
+//     vector<int> arr={23,43,24,53,26,38};
+//     quicksort(arr,0,arr.size()-1);
+//     for(int val:arr){
+//         cout<<val<<" ";
+//     }
+//     cout<<endl;
+// }
 
 
 
 
 //----------------------------------------------------------------------------------------
+int main(){
+    int arr[]={3,5,6,7,8,9,1,2};
+    int n=sizeof(arr)/sizeof(arr[0]);
+    for(int i=0;i<n;i++){
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl;
+    //cyclic sort
+    int i=0;
+    while(i<n){
+        int correctindex=arr[i]-1;
+        if (correctindex >= 0 && correctindex < n && arr[i] != arr[correctindex])  
+        swap(arr[i], arr[correctindex]);  
+    else  
+        i++;  
+    }
+    for(int i=0;i<n;i++){
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl;
+}
+
