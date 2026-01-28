@@ -174,33 +174,116 @@ using namespace std;
 
 //Optimal Idea (Sliding Window + Deque)
 
-int main(){
+// int main(){
+//     int n;
+//     cin>>n;
+//     int arr[n];
+//     for(int i=0;i<n;i++){
+//         cin>>arr[i];
+//     }
+//     int k;
+//     cin>>k;   
+// deque<int> dq;
+
+// for(int i = 0; i < n; i++) {
+
+//     // out of window remove
+//     if(!dq.empty() && dq.front() <= i - k)
+//         dq.pop_front();
+
+//     // remove bigger elements
+//     while(!dq.empty() && arr[dq.back()] >= arr[i])
+//         dq.pop_back();
+
+//     dq.push_back(i);
+
+//     // window ready
+//     if(i >= k - 1)
+//         cout << arr[dq.front()] << " ";
+// }
+// }
+
+//-----------------------------------------------------------------------------------------------------------------
+//you are given an array of size n you have to find that immediate next greater of every element of array
+
+// int main() {
+//     int n;
+//     cin >> n;
+//     vector<int> arr(n);
+//     for(int i=0; i<n; i++){
+//         cin >> arr[i];
+//     }
+
+//     vector<int> next_greater(n, -1); // Initialize result with -1
+//     stack<int> st;
+
+//     for(int i = 0; i < n; ++i) {
+//         while(!st.empty() && arr[i] > arr[st.top()]) {
+//             next_greater[st.top()] = arr[i];
+//             st.pop();
+//         }
+//         st.push(i);
+//     }
+
+//     // Output for every element
+//     for(int i = 0; i < n; i++) {
+//         cout << "Next greater for " << arr[i] << " is " << next_greater[i] << endl;
+//     }
+
+//     return 0;
+// }
+
+//-----------------------------------------------------------------------------------------------------------------
+//prefix sum
+
+// int main(){
+//     int n;
+//     cin >> n;
+//     int arr[n], ps[n];
+
+//     cin >> arr[0];
+//     ps[0] = arr[0];
+
+//     for(int i = 1; i < n; i++){
+//         cin >> arr[i];
+//         ps[i] = ps[i-1] + arr[i];
+//     }
+
+//     for(int i = 0; i < n; i++)
+//         cout << ps[i] << " ";
+// }
+
+//-----------------------------------------------------------------------------------------------------------------
+//find the first index of first one using binary serach algo
+//input = 0 0 0 0 0 1 1 1 1 1 1 1
+//ouput = 6
+
+int main() {
     int n;
-    cin>>n;
-    int arr[n];
-    for(int i=0;i<n;i++){
-        cin>>arr[i];
+    cin >> n;
+    vector<int> arr(n);
+    for(int i = 0; i < n; i++) {
+        cin >> arr[i];
     }
-    int k;
-    cin>>k;   
-deque<int> dq;
 
-for(int i = 0; i < n; i++) {
+    int low = 0, high = n - 1;
+    int result = -1; // if no 1 is found
 
-    // out of window remove
-    if(!dq.empty() && dq.front() <= i - k)
-        dq.pop_front();
+    while (low <= high) {
+        int mid = (low + high) / 2;
 
-    // remove bigger elements
-    while(!dq.empty() && arr[dq.back()] >= arr[i])
-        dq.pop_back();
+        if(arr[mid] == 1) {
+            result = mid;      // Update result: found a 1, but let's look for left half
+            high = mid - 1;
+        } else {
+            low = mid + 1;     // Continue to right half
+        }
+    }
 
-    dq.push_back(i);
+    if(result != -1)
+        cout << result + 1 << endl;   // 1-based index (as your sample output says "6" for 6th element)
+    else
+        cout << "-1" << endl;         // No 1 found
 
-    // window ready
-    if(i >= k - 1)
-        cout << arr[dq.front()] << " ";
-}
-
-
+    return 0;
 }
