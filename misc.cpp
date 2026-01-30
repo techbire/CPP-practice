@@ -253,37 +253,304 @@ using namespace std;
 //         cout << ps[i] << " ";
 // }
 
+
+
 //-----------------------------------------------------------------------------------------------------------------
 //find the first index of first one using binary serach algo
 //input = 0 0 0 0 0 1 1 1 1 1 1 1
 //ouput = 6
 
-int main() {
-    int n;
-    cin >> n;
-    vector<int> arr(n);
-    for(int i = 0; i < n; i++) {
-        cin >> arr[i];
-    }
+// int main() {
+//     int n;
+//     cin >> n;
+//     vector<int> arr(n);
+//     for(int i = 0; i < n; i++) {
+//         cin >> arr[i];
+//     }
 
-    int low = 0, high = n - 1;
-    int result = -1; // if no 1 is found
+//     int low = 0, high = n - 1;
+//     int result = -1; // if no 1 is found
 
-    while (low <= high) {
-        int mid = (low + high) / 2;
+//     while (low <= high) {
+//         int mid = (low + high) / 2;
 
-        if(arr[mid] == 1) {
-            result = mid;      // Update result: found a 1, but let's look for left half
-            high = mid - 1;
-        } else {
-            low = mid + 1;     // Continue to right half
-        }
-    }
+//         if(arr[mid] == 1) {
+//             result = mid;      // Update result: found a 1, but let's look for left half
+//             high = mid - 1;
+//         } else {
+//             low = mid + 1;     // Continue to right half
+//         }
+//     }
 
-    if(result != -1)
-        cout << result + 1 << endl;   // 1-based index (as your sample output says "6" for 6th element)
-    else
-        cout << "-1" << endl;         // No 1 found
+//     if(result != -1)
+//         cout << result + 1 << endl;   // 1-based index (as your sample output says "6" for 6th element)
+//     else
+//         cout << "-1" << endl;         // No 1 found
 
-    return 0;
-}
+//     return 0;
+// }
+
+
+
+//-----------------------------------------------------------------------------------------------------------------
+
+// A factory has n machines which can be used to make products. Your goal is to make a total of t products.
+// For each machine, you know the number of seconds it needs to make a single product. The machines can work simultaneously, and you can freely decide their schedule.
+// What is the shortest time needed to make t products?
+// Input
+// The first input line has two integers n and t: the number of machines and products.
+// The next line has n integers k_1,k_2,\dots,k_n: the time needed to make a product using each machine.
+// Output
+// Print one integer: the minimum time needed to make t products.
+
+// Example
+// Input:
+// 3 7
+// 3 2 5
+
+// Output:
+// 8
+
+// Explanation: Machine 1 makes two products, machine 2 makes four products and machine 3 makes one product.
+
+// int main() {
+//     ios::sync_with_stdio(false);
+//     cin.tie(NULL);
+
+//     int n;
+//     long long t;
+//     cin >> n >> t;
+
+//     vector<long long> k(n);
+//     for(int i = 0; i < n; i++) cin >> k[i];
+
+//     long long low = 0, high = 1e18;
+//     long long ans = high;
+
+//     while(low <= high) {
+//         long long mid = (low + high) / 2;
+
+//         long long products = 0;
+//         for(int i = 0; i < n; i++) {
+//             products += mid / k[i];
+//             if(products >= t) break;
+//         }
+
+//         if(products >= t) {
+//             ans = mid;
+//             high = mid - 1;
+//         } else {
+//             low = mid + 1;
+//         }
+//     }
+
+//     cout << ans;
+//     return 0;
+// }
+
+
+
+//-----------------------------------------------------------------------------------------------------------------
+
+// You are given n walls arranged in a straight line.
+// The time required to paint the i-th wall is x[i] seconds.
+// You want all the walls to be painted within T seconds.
+
+// Rules:
+// Each painter can paint only contiguous walls.
+// A wall cannot be painted partially by multiple painters.
+// A painter paints walls one after another (no parallel work for a single painter).
+// Your task is to determine the minimum number of painters required so that all walls are painted within T seconds.
+
+// Input Format
+
+// The first line contains an integer n — number of walls
+// The second line contains n integers x[ ] — time required to paint each wall
+// The third line contains an integer T — maximum allowed time
+
+// Output Format
+
+// Print a single integer — the minimum number of painters required
+// If it is not possible to paint all walls within T seconds, print -1
+
+// Example 1
+// Input
+// n = 5
+// x = [3, 5, 3, 2, 6]
+// T = 8
+
+// Output
+// 3
+
+// Explanation
+
+// One optimal way:
+
+// Painter 1 paints walls: [3, 5] → time = 8
+
+// Painter 2 paints walls: [3, 2] → time = 5
+
+// Painter 3 paints walls: [6] → time = 6
+
+// All painters finish within T = 8 seconds.
+// Minimum painters needed = 3
+
+
+
+// int main() {
+//     int nw;
+//     cin >> nw;
+
+//     vector<long long> x(nw);
+//     for(int i = 0; i < nw; i++) cin >> x[i];
+
+//     long long T;
+//     cin >> T;
+
+//     long long painters = 1;
+//     long long currTime = 0;
+
+//     for(int i = 0; i < nw; i++) {
+//         if(x[i] > T) {
+//             cout << -1;
+//             return 0;
+//         }
+
+//         if(currTime + x[i] <= T) {
+//             currTime += x[i];
+//         } else {
+//             painters++;
+//             currTime = x[i];
+//         }
+//     }
+
+//     cout << painters;
+//     return 0;
+// }
+
+//-----------------------------------------------------------------------------------------------------------------
+//Problem: Maximum Consecutive Ones After K Flips (Two Pointer)
+
+//You are given an array arr consisting of only 0s and 1s and an integer k.
+// You are allowed to flip at most k zeros into ones.
+// Your task is to find the maximum length of a contiguous subarray that contains only 1s after performing at most k flip operations.
+
+//  Input Format
+// First line contains an integer n — size of the array
+// Second line contains n integers (0 or 1)
+// Third line contains an integer k
+
+//  Output Format
+// Print a single integer — the maximum length of the subarray containing only 1s after at most k flips
+
+//  Constraints
+// 1 ≤ n ≤ 10^5
+// 0 ≤ k ≤ n
+// arr[i] is either 0 or 1
+
+//  Explanation (Two Pointer Idea)
+// Use a sliding window
+// Expand right pointer
+// Count zeros in the window
+// If zeros exceed k, shrink from left
+// Track maximum window size
+
+//  Sample Test Case 1
+// Input
+// 7
+// 1 1 0 0 1 1 1
+// 1
+
+// Output
+// 4
+
+
+// Explanation
+// Flip one 0 → longest subarray becomes [1 1 0 1 1 1] → length = 4
+
+//  Sample Test Case 2
+// Input
+// 8
+// 1 0 0 1 1 0 1 1
+// 2
+
+
+// Output
+// 6
+
+
+// Explanation
+// Flip two zeros → [1 0 0 1 1 0 1 1] → longest valid subarray length = 6
+
+//-----------------------------------------------------------------------------------------------------------------
+//upper bound and lower bound 
+//inbuild function
+// int main(){
+//     int n;
+//     cin>>n;
+//     vector<int>arr(n);
+//     for(int i=0;i<n;i++){
+//         cin>>arr[i];
+//     }
+//     sort(arr.begin(),arr.end());
+//     int low, up;
+//     cin>>low>>up;
+//     cout<<lower_bound(arr.begin(), arr.end(), low) - arr.begin()<<endl;
+//     cout<<upper_bound(arr.begin(), arr.end(), up) - arr.begin()<<endl;
+// }
+
+
+//logic based
+
+
+// int main() {
+//     int n;
+//     cin >> n;
+//     vector<int> arr(n);
+//     for(int i = 0; i < n; i++) {
+//         cin >> arr[i];
+//     }
+
+//     sort(arr.begin(), arr.end());
+
+//     int low, up;
+//     cin >> low >> up;
+
+//     // -------- lower bound --------
+//     int l = 0, r = n - 1;
+//     int lb = n;   // default n (not found case)
+
+//     while(l <= r) {
+//         int mid = l + (r - l) / 2;
+//         if(arr[mid] >= low) {
+//             lb = mid;
+//             r = mid - 1;
+//         } else {
+//             l = mid + 1;
+//         }
+//     }
+
+//     // -------- upper bound --------
+//     l = 0;
+//     r = n - 1;
+//     int ub = n;
+
+//     while(l <= r) {
+//         int mid = l + (r - l) / 2;
+//         if(arr[mid] > up) { //key difference in upper bound
+//             ub = mid;
+//             r = mid - 1;
+//         } else {
+//             l = mid + 1;
+//         }
+//     }
+
+//     cout << lb << endl;
+//     cout << ub << endl;
+// }
+
+
+
+
+//-----------------------------------------------------------------------------------------------------------------
+
